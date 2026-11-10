@@ -64,7 +64,8 @@ content/
   source-manifest.json     Export de la plataforma: títulos, duraciones, URLs
   course.json              Generado: modelo que consume la app
 data/aula.db               SQLite: usuarios, sesiones y progreso (ignorado)
-docs/                      Índice en PDF y su HTML
+docs/                      Índice del curso y manual de la app (HTML)
+Documentación App.pdf      Manual completo en PDF (raíz del proyecto)
 scripts/
   build-course.ts          Genera content/course.json y verifica los archivos
   create-accounts.ts       Crea las tres cuentas con su rol
