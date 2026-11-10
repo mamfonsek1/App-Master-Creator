@@ -31,8 +31,22 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es" className={`${serif.variable} ${sans.variable}`} data-scroll-behavior="smooth">
-      <body>{children}</body>
+    <html
+      lang="es"
+      className={`${serif.variable} ${sans.variable}`}
+      data-scroll-behavior="smooth"
+      // El script de tema modifica `data-theme` antes de hidratar.
+      suppressHydrationWarning
+    >
+      <body>
+        <script
+          // Aplica el tema guardado antes de pintar para evitar el destello.
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('aula-theme');if(t==='dark'){document.documentElement.dataset.theme='dark';}}catch(e){}})();`,
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

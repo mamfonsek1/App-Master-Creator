@@ -5,6 +5,10 @@
 //! Arranca el servidor Next (empaquetado en `resources/server`) con el runtime
 //! de Node que viaja en `resources/node.exe`, espera a que escuche y abre una
 //! ventana apuntando a él. Al cerrar la app se mata el proceso hijo.
+//!
+//! El puerto es estable entre arranques: cookies de sesión y preferencias del
+//! webview se guardan por origen, así que un puerto aleatorio cerraría la
+//! sesión y perdería el tema en cada inicio.
 
 use std::net::{TcpListener, TcpStream};
 use std::path::{Path, PathBuf};
@@ -15,11 +19,19 @@ use std::time::{Duration, Instant};
 use serde::{Deserialize, Serialize};
 use tauri::{Manager, RunEvent, WebviewUrl, WebviewWindowBuilder};
 
+const DEFAULT_PORT: u16 = 41820;
+
 struct ServerProcess(Mutex<Option<Child>>);
 
 #[derive(Serialize, Deserialize)]
 struct Config {
     media_dir: String,
+    #[serde(default = "default_port")]
+    port: u16,
+}
+
+fn default_port() -> u16 {
+    DEFAULT_PORT
 }
 
 fn error_dialog(title: &str, description: &str) {
@@ -33,6 +45,20 @@ fn error_dialog(title: &str, description: &str) {
 fn free_port() -> Result<u16, Box<dyn std::error::Error>> {
     let listener = TcpListener::bind("127.0.0.1:0")?;
     Ok(listener.local_addr()?.port())
+}
+
+/// Busca el primer puerto libre a partir del preferido, para conservar el
+/// mismo origen entre ejecuciones.
+fn pick_port(preferred: u16) -> u16 {
+    for offset in 0..20u16 {
+        let candidate = preferred.saturating_add(offset);
+
+        if TcpListener::bind(("127.0.0.1", candidate)).is_ok() {
+            return candidate;
+        }
+    }
+
+    free_port().unwrap_or(preferred)
 }
 
 fn wait_until_ready(port: u16) -> bool {
@@ -83,31 +109,32 @@ fn has_videos(directory: &Path) -> bool {
     false
 }
 
-fn save_config(config_path: &Path, media_dir: &str) -> Option<()> {
-    let payload = serde_json::to_string_pretty(&Config {
-        media_dir: media_dir.to_string(),
-    })
-    .ok()?;
-
-    std::fs::write(config_path, payload).ok()
+fn config_path(app: &tauri::AppHandle) -> Option<PathBuf> {
+    let directory = app.path().app_data_dir().ok()?;
+    std::fs::create_dir_all(&directory).ok()?;
+    Some(directory.join("config.json"))
 }
 
-/// Lee la carpeta de vídeos de la configuración. Si no existe (o apunta a una
-/// ruta que ya no está), pide al usuario que la elija.
-fn resolve_media_dir(app: &tauri::AppHandle) -> Option<String> {
-    let data_dir = app.path().app_data_dir().ok()?;
-    std::fs::create_dir_all(&data_dir).ok()?;
-    let config_path = data_dir.join("config.json");
+fn load_config(app: &tauri::AppHandle) -> Option<Config> {
+    let path = config_path(app)?;
+    let raw = std::fs::read_to_string(path).ok()?;
 
-    if let Ok(raw) = std::fs::read_to_string(&config_path) {
-        let trimmed = raw.trim_start_matches('\u{feff}');
+    serde_json::from_str(raw.trim_start_matches('\u{feff}')).ok()
+}
 
-        if let Ok(config) = serde_json::from_str::<Config>(trimmed) {
-            let configured = PathBuf::from(&config.media_dir);
+fn save_config(app: &tauri::AppHandle, config: &Config) -> Option<()> {
+    let path = config_path(app)?;
+    let payload = serde_json::to_string_pretty(config).ok()?;
+    std::fs::write(path, payload).ok()
+}
 
-            if configured.is_dir() && has_videos(&configured) {
-                return Some(config.media_dir);
-            }
+/// Configuración vigente. La primera vez pide la carpeta de vídeos.
+fn resolve_config(app: &tauri::AppHandle) -> Option<Config> {
+    if let Some(config) = load_config(app) {
+        let media_dir = PathBuf::from(&config.media_dir);
+
+        if media_dir.is_dir() && has_videos(&media_dir) {
+            return Some(config);
         }
     }
 
@@ -117,9 +144,13 @@ fn resolve_media_dir(app: &tauri::AppHandle) -> Option<String> {
             .pick_folder()?;
 
         if has_videos(&picked) {
-            let media_dir = picked.to_string_lossy().to_string();
-            save_config(&config_path, &media_dir)?;
-            return Some(media_dir);
+            let config = Config {
+                media_dir: picked.to_string_lossy().to_string(),
+                port: DEFAULT_PORT,
+            };
+
+            save_config(app, &config)?;
+            return Some(config);
         }
 
         error_dialog(
@@ -193,24 +224,21 @@ fn log_startup_error(app: &tauri::AppHandle, message: &str) {
     };
 
     let _ = std::fs::create_dir_all(&data_dir);
-    let _ = std::fs::write(
-        data_dir.join("startup.log"),
-        format!("{}\n{}\n", chrono_like_now(), message),
-    );
-}
-
-fn chrono_like_now() -> String {
-    match std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH) {
-        Ok(elapsed) => format!("unix={}", elapsed.as_secs()),
-        Err(_) => "unix=0".to_string(),
-    }
+    let _ = std::fs::write(data_dir.join("startup.log"), format!("{message}\n"));
 }
 
 fn start(app: &tauri::AppHandle) -> Result<(), Box<dyn std::error::Error>> {
-    let media_dir = resolve_media_dir(app).ok_or("No se seleccionó la carpeta de vídeos del curso.")?;
+    let mut config =
+        resolve_config(app).ok_or("No se seleccionó la carpeta de vídeos del curso.")?;
 
-    let port = free_port()?;
-    let child = spawn_server(app, port, &media_dir)?;
+    let port = pick_port(config.port);
+
+    if port != config.port {
+        config.port = port;
+        let _ = save_config(app, &config);
+    }
+
+    let child = spawn_server(app, port, &config.media_dir)?;
 
     app.manage(ServerProcess(Mutex::new(Some(child))));
 

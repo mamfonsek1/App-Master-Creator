@@ -25,3 +25,7 @@ build.log
 
 .DS_Store
 Thumbs.db
+
+# Instalador generado (se regenera con bun run desktop:build).
+/Aula Lans - Instalador.exe
+

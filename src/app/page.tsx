@@ -98,13 +98,8 @@ export default async function HomePage() {
                 </Link>
               ) : null}
 
-              <a
-                className="hero__index"
-                href="/indice.pdf"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Ver índice del curso (PDF)
+              <a className="hero__index" href="/indice">
+                Ver índice del curso
               </a>
             </aside>
           </div>

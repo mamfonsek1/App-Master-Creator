@@ -1,4 +1,4 @@
-# Aula · Refuerzo Master Creador Lans
+﻿# Aula · Refuerzo Master Creador Lans
 
 Entorno local de curso y reproducción. Sirve para ver las 77 lecciones del
 curso desde el disco, sin plataforma, sin conexión y con el progreso guardado
@@ -65,7 +65,6 @@ content/
   course.json              Generado: modelo que consume la app
 data/aula.db               SQLite: usuarios, sesiones y progreso (ignorado)
 docs/                      Índice en PDF y su HTML
-public/indice.pdf          El índice servido por la app
 scripts/
   build-course.ts          Genera content/course.json y verifica los archivos
   create-accounts.ts       Crea las tres cuentas con su rol
@@ -103,6 +102,16 @@ src/
 | GET    | `/api/progress`    | Progreso de la persona con sesión             |
 | PUT    | `/api/progress`    | Guarda posición y estado de una lección       |
 | GET    | `/api/media/<id>`  | Vídeo con `Range`, `206` y `Accept-Ranges`    |
+
+## Interfaz
+
+- **Temario** en `/` con buscador y progreso por módulo.
+- **Reproductor** en `/leccion/<id>`, con reanudación y guardado cada 5 s.
+- **Índice** en `/indice`: el temario completo dentro de la app, con enlace
+  directo a cada lección.
+- **Ajustes** en `/cuenta`: nombre, cambio de contraseña y, para la
+  administradora, alta/borrado de cuentas y restablecimiento de contraseñas.
+- **Menú de usuario** en la cabecera: ajustes, modo oscuro y cerrar sesión.
 
 `PUT /api/progress` espera:
 
@@ -156,7 +165,11 @@ workload de C++. WebView2 ya viene con Windows 10/11.
 La app instalada guarda en `%APPDATA%\com.lans.aula`:
 
 - `aula.db` — cuentas, sesiones y progreso.
-- `config.json` — ruta de la carpeta de vídeos elegida en el primer arranque.
+- `config.json` — ruta de la carpeta de vídeos y puerto del servidor interno.
+
+El puerto es estable (41820 por defecto): cookies de sesión y preferencias del
+webview se guardan por origen, así que un puerto distinto en cada arranque
+cerraría la sesión y perdería el modo oscuro.
 
 Los vídeos **no** se copian dentro del instalador: la primera vez la app pide
 la carpeta `media/` y la recuerda. Así el instalador pesa ~150 MB en vez de

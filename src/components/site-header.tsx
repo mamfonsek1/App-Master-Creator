@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { logoutAction } from "@/server/auth-actions";
+import { UserMenu } from "@/components/user-menu";
 import type { User } from "@/server/auth";
 
 interface SiteHeaderProps {
@@ -22,15 +22,10 @@ export function SiteHeader({ user, lessonCount, durationLabel }: SiteHeaderProps
             <strong>{lessonCount}</strong> lecciones
           </span>
           <span>{durationLabel}</span>
-          <a className="header-link" href="/indice.pdf" target="_blank" rel="noreferrer">
+          <Link className="header-link" href="/indice">
             Índice
-          </a>
-          <span className="header-user">{user.name}</span>
-          <form action={logoutAction}>
-            <button className="header-exit" type="submit">
-              Salir
-            </button>
-          </form>
+          </Link>
+          <UserMenu user={user} />
         </div>
       </div>
     </header>
