@@ -16,9 +16,22 @@ interface LessonSidebarProps {
 
 export function LessonSidebar({ course, activeLessonId, progress }: LessonSidebarProps) {
   const activeRef = useRef<HTMLAnchorElement | null>(null);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    activeRef.current?.scrollIntoView({ block: "center", behavior: "smooth" });
+    const container = scrollRef.current;
+    const active = activeRef.current;
+
+    if (!container || !active) {
+      return;
+    }
+
+    // Desplaza solo el panel, no la página: `scrollIntoView` arrastraría también
+    // la ventana y el reproductor se iría fuera de la vista.
+    const target =
+      active.offsetTop - container.offsetTop - container.clientHeight / 2 + active.clientHeight / 2;
+
+    container.scrollTo({ top: Math.max(target, 0), behavior: "smooth" });
   }, [activeLessonId]);
 
   const completed = Object.values(progress.lessons).filter((entry) => entry.completed).length;
@@ -36,7 +49,7 @@ export function LessonSidebar({ course, activeLessonId, progress }: LessonSideba
         </p>
       </div>
 
-      <div className="sidebar__scroll">
+      <div className="sidebar__scroll" ref={scrollRef}>
         {course.modules.map((module) => {
           const done = module.lessons.filter(
             (lesson) => progress.lessons[lesson.id]?.completed === true,

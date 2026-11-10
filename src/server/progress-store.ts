@@ -1,3 +1,5 @@
+﻿import path from "node:path";
+
 import { FileSystem } from "@effect/platform";
 import { NodeFileSystem } from "@effect/platform-node";
 import { Context, Data, Effect, Either, Layer, Option, Ref, Schema } from "effect";
@@ -39,10 +41,10 @@ export class ProgressStore extends Context.Tag("ProgressStore")<
 /**
  * Estado de progreso persistido en `data/progress.json`.
  *
- * - La primera lectura carga el archivo; si está corrupto se archiva y se
+ * - La primera lectura carga el archivo; si estÃ¡ corrupto se archiva y se
  *   empieza de cero, dejando constancia en el log.
- * - Cada escritura es atómica (temporal + rename) y se serializa con un
- *   semáforo, de modo que dos peticiones simultáneas no dejan el JSON a medias.
+ * - Cada escritura es atÃ³mica (temporal + rename) y se serializa con un
+ *   semÃ¡foro, de modo que dos peticiones simultÃ¡neas no dejan el JSON a medias.
  */
 const make = Effect.gen(function* () {
   const fileSystem = yield* FileSystem.FileSystem;
@@ -77,7 +79,7 @@ const make = Effect.gen(function* () {
       const backup = `${paths.progressFile}.corrupt-${Date.now()}`;
       yield* fileSystem.rename(paths.progressFile, backup).pipe(Effect.ignore);
       yield* Effect.logWarning(
-        `Progreso ilegible; se archivó en ${backup} y se empieza de cero.`,
+        `Progreso ilegible; se archivÃ³ en ${backup} y se empieza de cero.`,
       );
       return emptyProgress();
     }
@@ -101,6 +103,18 @@ const make = Effect.gen(function* () {
     Effect.gen(function* () {
       const temporary = `${paths.progressFile}.tmp`;
       const payload = `${JSON.stringify(snapshot, null, 2)}\n`;
+
+      // En un clon limpio la carpeta `data/` no existe todavÃ­a.
+      yield* fileSystem.makeDirectory(path.dirname(paths.progressFile), { recursive: true }).pipe(
+        Effect.mapError(
+          (cause) =>
+            new ProgressStoreError({
+              operation: "write",
+              file: path.dirname(paths.progressFile),
+              reason: cause.message,
+            }),
+        ),
+      );
 
       yield* fileSystem.writeFileString(temporary, payload).pipe(
         Effect.mapError(
