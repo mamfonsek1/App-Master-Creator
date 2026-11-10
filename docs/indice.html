@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Índice — Refuerzo Master Creador Lans</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#111111; --paper:#FAF8F4; --blue:#0072EF; --grey:#8C8880; --line:#E3DFD7; }
+  *{ box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  html,body{ margin:0; padding:0; }
+  body{ font-family:'Inter',Helvetica,Arial,sans-serif; color:var(--ink); background:#fff; }
+
+  @page{ size:A4; margin:0; }
+
+  .page{ width:210mm; height:297mm; position:relative; overflow:hidden; page-break-after:always; break-after:page;
+         padding:20mm 20mm 18mm 20mm; background:#fff; }
+  .page:last-child{ page-break-after:auto; }
+
+  .label{ font-size:7pt; letter-spacing:.22em; text-transform:uppercase; color:var(--grey); font-weight:500; }
+
+  /* ---------- PORTADA ---------- */
+  .cover{ background:#0B0B0B; color:#fff; }
+  .cover .top{ display:flex; justify-content:space-between; align-items:flex-start; }
+  .cover .wordmark{ font-family:'EB Garamond',Georgia,serif; font-size:10.5pt; letter-spacing:.32em; text-transform:uppercase; }
+  .cover .top .label{ color:rgba(255,255,255,.5); }
+  .cover .mid{ position:absolute; left:20mm; right:20mm; top:86mm; }
+  .cover .rule{ width:24mm; height:1.6px; background:var(--blue); margin-bottom:11mm; }
+  .cover h1{ font-family:'EB Garamond',Georgia,serif; font-weight:500; font-size:43pt; line-height:1.06; margin:0 0 6mm 0; }
+  .cover h1 em{ font-style:italic; font-weight:400; }
+  .cover .sub{ font-size:10pt; color:rgba(255,255,255,.6); font-weight:300; letter-spacing:.02em; }
+  .cover .stats{ position:absolute; left:20mm; right:20mm; bottom:42mm; display:flex; border-top:1px solid rgba(255,255,255,.14); padding-top:7mm; }
+  .cover .stat{ flex:1; }
+  .cover .stat + .stat{ border-left:1px solid rgba(255,255,255,.14); padding-left:7mm; }
+  .cover .stat .n{ font-family:'EB Garamond',Georgia,serif; font-size:24pt; line-height:1; }
+  .cover .stat .l{ margin-top:2.5mm; font-size:6.5pt; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.48); }
+  .cover .foot{ position:absolute; left:20mm; right:20mm; bottom:16mm; display:flex; justify-content:space-between;
+                font-size:7pt; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.4); }
+
+  /* ---------- CABECERAS / PIES ---------- */
+  .phead{ display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--line);
+          padding-bottom:3.5mm; margin-bottom:8mm; }
+  .phead .t{ font-family:'EB Garamond',Georgia,serif; font-size:12.5pt; letter-spacing:.02em; }
+  .foot{ position:absolute; left:20mm; right:20mm; bottom:11mm; display:flex; justify-content:space-between;
+         font-size:6.5pt; letter-spacing:.16em; text-transform:uppercase; color:var(--grey);
+         border-top:1px solid var(--line); padding-top:3mm; }
+
+  /* ---------- RESUMEN ---------- */
+  .overview h2{ font-family:'EB Garamond',Georgia,serif; font-weight:500; font-size:27pt; margin:0 0 3mm 0; line-height:1.12; }
+  .overview .lede{ font-size:9pt; color:#4A4741; font-weight:300; line-height:1.6; max-width:140mm; margin-bottom:9mm; }
+
+  table.mod{ width:100%; border-collapse:collapse; }
+  table.mod th{ text-align:left; font-size:6.5pt; letter-spacing:.18em; text-transform:uppercase; color:var(--grey);
+                font-weight:500; padding:0 0 2.5mm 0; border-bottom:1px solid var(--ink); }
+  table.mod td{ padding:3.1mm 0; border-bottom:1px solid var(--line); vertical-align:baseline; }
+  table.mod td.n{ width:11mm; font-family:'EB Garamond',Georgia,serif; font-size:11pt; color:var(--blue); }
+  table.mod td.name{ font-size:9.5pt; }
+  table.mod td.num{ width:24mm; text-align:right; font-size:8.5pt; color:#4A4741; }
+  table.mod td.dur{ width:28mm; text-align:right; font-size:8.5pt; color:#4A4741; font-variant-numeric:tabular-nums; }
+  table.mod tr.total td{ border-bottom:none; border-top:1px solid var(--ink); padding-top:3.5mm; font-weight:600; }
+  table.mod tr.total td.n{ color:var(--ink); }
+
+  .note{ margin-top:7mm; padding:4.5mm 6mm; background:var(--paper); border-left:2px solid var(--blue);
+         font-size:7.8pt; line-height:1.6; color:#3D3A35; }
+  .note b{ font-weight:600; }
+
+  .howto{ margin-top:9mm; }
+  .howto ul{ list-style:none; margin:3.5mm 0 0 0; padding:0; }
+  .howto li{ font-size:8.2pt; line-height:1.55; color:#3D3A35; padding:2.6mm 0; border-bottom:1px solid var(--line); display:flex; gap:5mm; }
+  .howto li:last-child{ border-bottom:none; }
+  .howto li b{ display:inline-block; min-width:32mm; font-weight:600; color:var(--ink); }
+
+  /* ---------- MODULOS ---------- */
+  .mod{ margin-bottom:7.5mm; page-break-inside:avoid; break-inside:avoid; }
+  .modhead{ display:flex; align-items:baseline; gap:5mm; border-bottom:1.3px solid var(--ink); padding-bottom:2mm; margin-bottom:3.5mm; }
+  .modhead .no{ font-family:'EB Garamond',Georgia,serif; font-size:15pt; color:var(--blue); line-height:1; min-width:10mm; }
+  .modhead .nm{ font-family:'EB Garamond',Georgia,serif; font-size:14pt; font-weight:500; letter-spacing:.01em; }
+  .modhead .meta{ margin-left:auto; font-size:6.5pt; letter-spacing:.14em; text-transform:uppercase; color:var(--grey); white-space:nowrap; }
+
+  .lessons{ display:grid; grid-template-columns:1fr 1fr; column-gap:11mm; row-gap:1.9mm; }
+  .lesson{ display:flex; align-items:baseline; gap:2.2mm; font-size:8.4pt; line-height:1.3; }
+  .lesson .idx{ font-size:6.8pt; color:var(--grey); min-width:5mm; font-variant-numeric:tabular-nums; }
+  .lesson .name{ flex:1; }
+  .lesson .dur{ font-size:7.4pt; color:var(--grey); font-variant-numeric:tabular-nums; }
+  .lesson .box{ width:2.9mm; height:2.9mm; border:.4mm solid #CCC7BD; border-radius:.5mm; flex:none; }
+</style>
+</head>
+<body>
+<section class="page cover">
+  <div class="top">
+    <div class="wordmark">Lans Studios</div>
+    <div class="label">Documento personal</div>
+  </div>
+  <div class="mid">
+    <div class="rule"></div>
+    <h1>Refuerzo Master<br>Creador <em>Lans</em></h1>
+    <div class="sub">Índice del curso · Temario completo y duración de cada lección</div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="n">77</div><div class="l">Lecciones</div></div>
+    <div class="stat"><div class="n">10</div><div class="l">Módulos</div></div>
+    <div class="stat"><div class="n">4:30</div><div class="l">Horas de vídeo</div></div>
+    <div class="stat"><div class="n">5 GB</div><div class="l">En local · 1080p</div></div>
+  </div>
+  <div class="foot"><span>lansstudios.com</span><span>Noviembre 2026</span></div>
+</section>
+<section class="page overview">
+<div class="phead"><div class="t">Resumen del curso</div><div class="label">Mapa</div></div>
+<h2>Mapa del curso</h2>
+<div class="lede">Diez bloques que van de la teoría de la uña a la práctica final con cápsulas. Las duraciones son las de los vídeos originales de la plataforma.</div>
+<table class="mod">
+<tr><th></th><th>Módulo</th><th style="text-align:right">Lecciones</th><th style="text-align:right">Duración</th></tr>
+<tr><td class="n">01</td><td class="name">TEORIA DE LA UÑA</td><td class="num">7</td><td class="dur">24 min</td></tr>
+<tr><td class="n">02</td><td class="name">ALERGIAS</td><td class="num">4</td><td class="dur">8 min</td></tr>
+<tr><td class="n">03</td><td class="name">ENFERMEDADES</td><td class="num">4</td><td class="dur">12 min</td></tr>
+<tr><td class="n">04</td><td class="name">TIPOS DE PIEL</td><td class="num">3</td><td class="dur">9 min</td></tr>
+<tr><td class="n">05</td><td class="name">PREPARACIÓN DE LA UÑA</td><td class="num">5</td><td class="dur">20 min</td></tr>
+<tr><td class="n">06</td><td class="name">MANICURA</td><td class="num">8</td><td class="dur">30 min</td></tr>
+<tr><td class="n">07</td><td class="name">TEORIA DEL BUILDER GEL</td><td class="num">12</td><td class="dur">27 min</td></tr>
+<tr><td class="n">08</td><td class="name">TEORIA DEL DUAL</td><td class="num">14</td><td class="dur">24 min</td></tr>
+<tr><td class="n">09</td><td class="name">DUAL LANS</td><td class="num">14</td><td class="dur">1 h 13 min</td></tr>
+<tr><td class="n">10</td><td class="name">PRACTICA - FRENCH CON CAPSULAS</td><td class="num">6</td><td class="dur">38 min</td></tr>
+<tr class="total"><td class="n">—</td><td class="name">Total</td><td class="num">77</td><td class="dur">4 h 30 min</td></tr>
+</table>
+<div class="note">
+  <b>Temario completo.</b> La plataforma declara 77 lecciones, pero el índice público solo enlaza 67. Las otras 10 estaban ocultas y se han recuperado por enlace directo: <b>2 en Builder</b> (Densidad del gel, Sensación térmica), <b>4 en Teoría del Dual</b> (Dual cuadrado, Dual natural nails, Dual bailarina, Precurado) y <b>4 en Dual Lans</b> (Exfoliación, Hidratación, Fin, Vídeos).
+</div>
+<div class="howto">
+  <div class="label">Cómo usar este índice</div>
+  <ul>
+    <li><b>Marca lo visto</b>La casilla de cada lección sirve para ir tachando el repaso sin depender de la plataforma.</li>
+    <li><b>Reparte el estudio</b>Cada bloque indica duración total; las lecciones van de la teoría a la práctica.</li>
+    <li><b>Encuentra el vídeo</b>Los archivos están en la carpeta del curso, con el mismo número que aparece aquí.</li>
+  </ul>
+</div>
+<div class="foot"><span>Refuerzo Master Creador Lans</span><span>02</span></div>
+</section>
+<section class="page">
+<div class="phead"><div class="t">Temario</div><div class="label">Lección a lección</div></div>
+<div class="mod">
+<div class="modhead"><div class="no">01</div><div class="nm">TEORIA DE LA UÑA</div><div class="meta">7 lecciones · 24 min</div></div>
+<div class="lessons">
+<div class="lesson"><span class="idx">01</span><span class="name">ANATOMIA DE LA UÑA</span><span class="dur">5:05</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">02</span><span class="name">LECHO UNGUEAL</span><span class="dur">3:43</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">03</span><span class="name">EPONIQUIO</span><span class="dur">1:46</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">04</span><span class="name">PLIEGUE QUERATINIZADO</span><span class="dur">2:14</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">05</span><span class="name">LA CUTICULA</span><span class="dur">3:36</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">06</span><span class="name">HIPONIQUIO</span><span class="dur">3:39</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">07</span><span class="name">PLIEGUES DE LA LAMINA</span><span class="dur">4:06</span><span class="box"></span></div>
+</div></div>
+
+<div class="mod">
+<div class="modhead"><div class="no">02</div><div class="nm">ALERGIAS</div><div class="meta">4 lecciones · 8 min</div></div>
+<div class="lessons">
+<div class="lesson"><span class="idx">01</span><span class="name">ALERGIAS</span><span class="dur">1:46</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">02</span><span class="name">¿ES POSIBLE QUE LOS PRODUCTOS QUÍMICOS PENETREN LA PIEL?</span><span class="dur">2:48</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">03</span><span class="name">FACTORES QUE AUMENTAN LA PENETRACION</span><span class="dur">1:28</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">04</span><span class="name">RIESGOS DE LOS INGREDIENTES PROHIBIDOS</span><span class="dur">2:49</span><span class="box"></span></div>
+</div></div>
+
+<div class="mod">
+<div class="modhead"><div class="no">03</div><div class="nm">ENFERMEDADES</div><div class="meta">4 lecciones · 12 min</div></div>
+<div class="lessons">
+<div class="lesson"><span class="idx">01</span><span class="name">PARONIQUIA</span><span class="dur">2:28</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">02</span><span class="name">ONICOLISIS</span><span class="dur">3:13</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">03</span><span class="name">UÑAS NEGRAS</span><span class="dur">5:07</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">04</span><span class="name">ONICOMICOSIS</span><span class="dur">2:08</span><span class="box"></span></div>
+</div></div>
+
+<div class="mod">
+<div class="modhead"><div class="no">04</div><div class="nm">TIPOS DE PIEL</div><div class="meta">3 lecciones · 9 min</div></div>
+<div class="lessons">
+<div class="lesson"><span class="idx">01</span><span class="name">PIEL AQUILIBRADA</span><span class="dur">2:12</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">02</span><span class="name">PERMEABILIDAD A LOS QUIMICOS</span><span class="dur">1:42</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">03</span><span class="name">PIEL SECA, SENSIBLE Y FINA</span><span class="dur">5:22</span><span class="box"></span></div>
+</div></div>
+
+<div class="mod">
+<div class="modhead"><div class="no">05</div><div class="nm">PREPARACIÓN DE LA UÑA</div><div class="meta">5 lecciones · 20 min</div></div>
+<div class="lessons">
+<div class="lesson"><span class="idx">01</span><span class="name">PORQUE DEBEMOS PREPARAR LA UÑA</span><span class="dur">4:24</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">02</span><span class="name">TENSION SUPERFICIAL Y FIBRILLAS</span><span class="dur">3:41</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">03</span><span class="name">CAPAS DE LA UÑA</span><span class="dur">7:31</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">04</span><span class="name">¿EN CUÁL DE LAS CAPAS EL PRODUCTO PERMANECE ESTABLE?</span><span class="dur">2:39</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">05</span><span class="name">TABLA DE ABRASIVIDAD</span><span class="dur">2:02</span><span class="box"></span></div>
+</div></div>
+
+<div class="mod">
+<div class="modhead"><div class="no">06</div><div class="nm">MANICURA</div><div class="meta">8 lecciones · 30 min</div></div>
+<div class="lessons">
+<div class="lesson"><span class="idx">01</span><span class="name">BROCAS PARA MANICURA</span><span class="dur">1:58</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">02</span><span class="name">EL BOLSILLO</span><span class="dur">2:46</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">03</span><span class="name">TALCO</span><span class="dur">1:13</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">04</span><span class="name">FRESA FLAMA</span><span class="dur">6:54</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">05</span><span class="name">DRILL, TORNO</span><span class="dur">1:26</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">06</span><span class="name">CORTE DE CUTICULA</span><span class="dur">1:37</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">07</span><span class="name">PULIDO DE LA PIEL</span><span class="dur">4:53</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">08</span><span class="name">PREPARACIÓN QUIMICA</span><span class="dur">10:00</span><span class="box"></span></div>
+</div></div>
+
+<div class="foot"><span>Refuerzo Master Creador Lans</span><span>03</span></div>
+</section>
+<section class="page">
+<div class="phead"><div class="t">Temario</div><div class="label">Lección a lección</div></div>
+<div class="mod">
+<div class="modhead"><div class="no">07</div><div class="nm">TEORIA DEL BUILDER GEL</div><div class="meta">12 lecciones · 27 min</div></div>
+<div class="lessons">
+<div class="lesson"><span class="idx">01</span><span class="name">BIENVENIDOS</span><span class="dur">0:41</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">02</span><span class="name">¿QUE ES EL BUILDER GEL?</span><span class="dur">3:28</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">03</span><span class="name">IMPORTANCIA DE LOS INGREDIENTES</span><span class="dur">1:51</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">04</span><span class="name">ACRYLATES COPOLYMER</span><span class="dur">2:10</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">05</span><span class="name">ISOBORNYL METHACRYLATE</span><span class="dur">1:46</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">06</span><span class="name">SILICA</span><span class="dur">0:38</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">07</span><span class="name">FOTOINICIADOR</span><span class="dur">0:38</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">08</span><span class="name">LAMPARAS</span><span class="dur">1:43</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">09</span><span class="name">CODIGO DEL COLOR</span><span class="dur">2:05</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">10</span><span class="name">COMO PUEDO SELECCIONAR UN BUILDER</span><span class="dur">1:03</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">11</span><span class="name">DENSIDAD DEL GEL</span><span class="dur">5:30</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">12</span><span class="name">SENSACIÓN TERMICA</span><span class="dur">6:02</span><span class="box"></span></div>
+</div></div>
+
+<div class="mod">
+<div class="modhead"><div class="no">08</div><div class="nm">TEORIA DEL DUAL</div><div class="meta">14 lecciones · 24 min</div></div>
+<div class="lessons">
+<div class="lesson"><span class="idx">01</span><span class="name">INICIO</span><span class="dur">0:51</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">02</span><span class="name">DUAL FORM</span><span class="dur">1:06</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">03</span><span class="name">TIPOS DE ARCOS</span><span class="dur">1:08</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">04</span><span class="name">APICE INTERNO</span><span class="dur">0:32</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">05</span><span class="name">CAPSULA SIN APICE</span><span class="dur">0:50</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">06</span><span class="name">APICE INTERNO MARCADO ALTO</span><span class="dur">1:11</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">07</span><span class="name">APICE INTERNO NATURAL</span><span class="dur">1:00</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">08</span><span class="name">ERRORES AL COLOCAR LA CAPSULA</span><span class="dur">3:30</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">09</span><span class="name">DISTRIBUCION INCORRECTA</span><span class="dur">1:47</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">10</span><span class="name">UÑA ESTANDAR</span><span class="dur">1:40</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">11</span><span class="name">DUAL CUADRADO</span><span class="dur">1:44</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">12</span><span class="name">DUAL NATURAL NAILS</span><span class="dur">0:30</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">13</span><span class="name">DUAL BAILARINA</span><span class="dur">7:07</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">14</span><span class="name">PRECURADO</span><span class="dur">1:48</span><span class="box"></span></div>
+</div></div>
+
+<div class="mod">
+<div class="modhead"><div class="no">09</div><div class="nm">DUAL LANS</div><div class="meta">14 lecciones · 1 h 13 min</div></div>
+<div class="lessons">
+<div class="lesson"><span class="idx">01</span><span class="name">PRIMER Y BASE</span><span class="dur">4:28</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">02</span><span class="name">APLICACIÓN DEL RUBBER</span><span class="dur">8:38</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">03</span><span class="name">ELEGIR EL BUILDER GEL</span><span class="dur">6:53</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">04</span><span class="name">ELEGIR EL DUAL</span><span class="dur">6:34</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">05</span><span class="name">ADAPTACIÓN DEL DUAL</span><span class="dur">15:39</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">06</span><span class="name">LIMADO MANUAL</span><span class="dur">7:59</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">07</span><span class="name">LIMADO MECANICO</span><span class="dur">4:08</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">08</span><span class="name">LIMADO CON SPONGE</span><span class="dur">4:01</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">09</span><span class="name">TOP COAT</span><span class="dur">7:14</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">10</span><span class="name">TOP COAT</span><span class="dur">1:43</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">11</span><span class="name">EXFOLIACIÓN</span><span class="dur">1:50</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">12</span><span class="name">HIDRATACIÓN</span><span class="dur">3:51</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">13</span><span class="name">FIN</span><span class="dur">0:47</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">14</span><span class="name">VIDEOS</span><span class="dur">0:09</span><span class="box"></span></div>
+</div></div>
+
+<div class="mod">
+<div class="modhead"><div class="no">10</div><div class="nm">PRACTICA - FRENCH CON CAPSULAS</div><div class="meta">6 lecciones · 38 min</div></div>
+<div class="lessons">
+<div class="lesson"><span class="idx">01</span><span class="name">ELEGIR EL DUAL</span><span class="dur">8:23</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">02</span><span class="name">APLICACION DEL GEL EN EL BORDE LIBRE</span><span class="dur">11:14</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">03</span><span class="name">APLICACIÓN DEL GEL COVER</span><span class="dur">8:20</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">04</span><span class="name">TOP COAT</span><span class="dur">6:17</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">05</span><span class="name">ACEITE</span><span class="dur">2:13</span><span class="box"></span></div>
+<div class="lesson"><span class="idx">06</span><span class="name">FINAL</span><span class="dur">1:51</span><span class="box"></span></div>
+</div></div>
+
+<div class="foot"><span>Refuerzo Master Creador Lans</span><span>04</span></div>
+</section>
+</body></html>
+

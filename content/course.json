@@ -1,0 +1,785 @@
+{
+  "id": "refuerzo-master-creador-lans",
+  "title": "REFUERZO MASTER CREADOR LANS",
+  "subtitle": "Índice del curso · Temario completo y duración de cada lección",
+  "source": "https://www.lansstudios.com/products/refuerzo-master-creador-lans",
+  "generatedAt": "2026-11-10T06:03:54.247Z",
+  "modules": [
+    {
+      "id": "teoria-de-la-una",
+      "title": "TEORIA DE LA UÑA",
+      "position": 1,
+      "lessons": [
+        {
+          "id": "teoria-de-la-una/01-anatomia-de-la-una",
+          "moduleId": "teoria-de-la-una",
+          "title": "ANATOMIA DE LA UÑA",
+          "position": 1,
+          "durationSeconds": 305,
+          "bytes": 60322875,
+          "file": "1. TEORIA DE LA UÑA/01 - ANATOMIA DE LA UÑA.mp4"
+        },
+        {
+          "id": "teoria-de-la-una/02-lecho-ungueal",
+          "moduleId": "teoria-de-la-una",
+          "title": "LECHO UNGUEAL",
+          "position": 2,
+          "durationSeconds": 223,
+          "bytes": 50944444,
+          "file": "1. TEORIA DE LA UÑA/02 - LECHO UNGUEAL.mp4"
+        },
+        {
+          "id": "teoria-de-la-una/03-eponiquio",
+          "moduleId": "teoria-de-la-una",
+          "title": "EPONIQUIO",
+          "position": 3,
+          "durationSeconds": 106,
+          "bytes": 25166114,
+          "file": "1. TEORIA DE LA UÑA/03 - EPONIQUIO.mp4"
+        },
+        {
+          "id": "teoria-de-la-una/04-pliegue-queratinizado",
+          "moduleId": "teoria-de-la-una",
+          "title": "PLIEGUE QUERATINIZADO",
+          "position": 4,
+          "durationSeconds": 134,
+          "bytes": 26363154,
+          "file": "1. TEORIA DE LA UÑA/04 - PLIEGUE QUERATINIZADO.mp4"
+        },
+        {
+          "id": "teoria-de-la-una/05-la-cuticula",
+          "moduleId": "teoria-de-la-una",
+          "title": "LA CUTICULA",
+          "position": 5,
+          "durationSeconds": 216,
+          "bytes": 45947688,
+          "file": "1. TEORIA DE LA UÑA/05 - LA CUTICULA.mp4"
+        },
+        {
+          "id": "teoria-de-la-una/06-hiponiquio",
+          "moduleId": "teoria-de-la-una",
+          "title": "HIPONIQUIO",
+          "position": 6,
+          "durationSeconds": 219,
+          "bytes": 50308516,
+          "file": "1. TEORIA DE LA UÑA/06 - HIPONIQUIO.mp4"
+        },
+        {
+          "id": "teoria-de-la-una/07-pliegues-de-la-lamina",
+          "moduleId": "teoria-de-la-una",
+          "title": "PLIEGUES DE LA LAMINA",
+          "position": 7,
+          "durationSeconds": 246,
+          "bytes": 48653605,
+          "file": "1. TEORIA DE LA UÑA/07 - PLIEGUES DE LA LAMINA.mp4"
+        }
+      ],
+      "durationSeconds": 1449
+    },
+    {
+      "id": "alergias",
+      "title": "ALERGIAS",
+      "position": 2,
+      "lessons": [
+        {
+          "id": "alergias/01-alergias",
+          "moduleId": "alergias",
+          "title": "ALERGIAS",
+          "position": 1,
+          "durationSeconds": 106,
+          "bytes": 29397615,
+          "file": "2. ALERGIAS/01 - ALERGIAS.mp4"
+        },
+        {
+          "id": "alergias/02-es-posible-que-los-productos-quimicos-penetren-la-piel",
+          "moduleId": "alergias",
+          "title": "¿ES POSIBLE QUE LOS PRODUCTOS QUÍMICOS PENETREN LA PIEL?",
+          "position": 2,
+          "durationSeconds": 168,
+          "bytes": 40654069,
+          "file": "2. ALERGIAS/02 - ¿ES POSIBLE QUE LOS PRODUCTOS QUÍMICOS PENETREN LA PIEL.mp4"
+        },
+        {
+          "id": "alergias/03-factores-que-aumentan-la-penetracion",
+          "moduleId": "alergias",
+          "title": "FACTORES QUE AUMENTAN LA PENETRACION",
+          "position": 3,
+          "durationSeconds": 88,
+          "bytes": 21381640,
+          "file": "2. ALERGIAS/03 - FACTORES QUE AUMENTAN LA PENETRACION.mp4"
+        },
+        {
+          "id": "alergias/04-riesgos-de-los-ingredientes-prohibidos",
+          "moduleId": "alergias",
+          "title": "RIESGOS DE LOS INGREDIENTES PROHIBIDOS",
+          "position": 4,
+          "durationSeconds": 169,
+          "bytes": 44119922,
+          "file": "2. ALERGIAS/04 - RIESGOS DE LOS INGREDIENTES PROHIBIDOS.mp4"
+        }
+      ],
+      "durationSeconds": 531
+    },
+    {
+      "id": "enfermedades",
+      "title": "ENFERMEDADES",
+      "position": 3,
+      "lessons": [
+        {
+          "id": "enfermedades/01-paroniquia",
+          "moduleId": "enfermedades",
+          "title": "PARONIQUIA",
+          "position": 1,
+          "durationSeconds": 148,
+          "bytes": 32988260,
+          "file": "3. ENFERMEDADES/01 - PARONIQUIA.mp4"
+        },
+        {
+          "id": "enfermedades/02-onicolisis",
+          "moduleId": "enfermedades",
+          "title": "ONICOLISIS",
+          "position": 2,
+          "durationSeconds": 193,
+          "bytes": 43695654,
+          "file": "3. ENFERMEDADES/02 - ONICOLISIS.mp4"
+        },
+        {
+          "id": "enfermedades/03-unas-negras",
+          "moduleId": "enfermedades",
+          "title": "UÑAS NEGRAS",
+          "position": 3,
+          "durationSeconds": 307,
+          "bytes": 65739932,
+          "file": "3. ENFERMEDADES/03 - UÑAS NEGRAS.mp4"
+        },
+        {
+          "id": "enfermedades/04-onicomicosis",
+          "moduleId": "enfermedades",
+          "title": "ONICOMICOSIS",
+          "position": 4,
+          "durationSeconds": 128,
+          "bytes": 31603507,
+          "file": "3. ENFERMEDADES/04 - ONICOMICOSIS.mp4"
+        }
+      ],
+      "durationSeconds": 776
+    },
+    {
+      "id": "tipos-de-piel",
+      "title": "TIPOS DE PIEL",
+      "position": 4,
+      "lessons": [
+        {
+          "id": "tipos-de-piel/01-piel-aquilibrada",
+          "moduleId": "tipos-de-piel",
+          "title": "PIEL AQUILIBRADA",
+          "position": 1,
+          "durationSeconds": 132,
+          "bytes": 27157743,
+          "file": "4. TIPOS DE PIEL/01 - PIEL AQUILIBRADA.mp4"
+        },
+        {
+          "id": "tipos-de-piel/02-permeabilidad-a-los-quimicos",
+          "moduleId": "tipos-de-piel",
+          "title": "PERMEABILIDAD A LOS QUIMICOS",
+          "position": 2,
+          "durationSeconds": 102,
+          "bytes": 19833024,
+          "file": "4. TIPOS DE PIEL/02 - PERMEABILIDAD A LOS QUIMICOS.mp4"
+        },
+        {
+          "id": "tipos-de-piel/03-piel-seca-sensible-y-fina",
+          "moduleId": "tipos-de-piel",
+          "title": "PIEL SECA, SENSIBLE Y FINA",
+          "position": 3,
+          "durationSeconds": 322,
+          "bytes": 73590447,
+          "file": "4. TIPOS DE PIEL/03 - PIEL SECA, SENSIBLE Y FINA.mp4"
+        }
+      ],
+      "durationSeconds": 556
+    },
+    {
+      "id": "preparacion-de-la-una",
+      "title": "PREPARACIÓN DE LA UÑA",
+      "position": 5,
+      "lessons": [
+        {
+          "id": "preparacion-de-la-una/01-porque-debemos-preparar-la-una",
+          "moduleId": "preparacion-de-la-una",
+          "title": "PORQUE DEBEMOS PREPARAR LA UÑA",
+          "position": 1,
+          "durationSeconds": 264,
+          "bytes": 53627245,
+          "file": "5. PREPARACIÓN DE LA UÑA/01 - PORQUE DEBEMOS PREPARAR LA UÑA.mp4"
+        },
+        {
+          "id": "preparacion-de-la-una/02-tension-superficial-y-fibrillas",
+          "moduleId": "preparacion-de-la-una",
+          "title": "TENSION SUPERFICIAL Y FIBRILLAS",
+          "position": 2,
+          "durationSeconds": 221,
+          "bytes": 46619593,
+          "file": "5. PREPARACIÓN DE LA UÑA/02 - TENSION SUPERFICIAL Y FIBRILLAS.mp4"
+        },
+        {
+          "id": "preparacion-de-la-una/03-capas-de-la-una",
+          "moduleId": "preparacion-de-la-una",
+          "title": "CAPAS DE LA UÑA",
+          "position": 3,
+          "durationSeconds": 451,
+          "bytes": 91793560,
+          "file": "5. PREPARACIÓN DE LA UÑA/03 - CAPAS DE LA UÑA.mp4"
+        },
+        {
+          "id": "preparacion-de-la-una/04-en-cual-de-las-capas-el-producto-permanece-estable",
+          "moduleId": "preparacion-de-la-una",
+          "title": "¿EN CUÁL DE LAS CAPAS EL PRODUCTO PERMANECE ESTABLE?",
+          "position": 4,
+          "durationSeconds": 159,
+          "bytes": 27108176,
+          "file": "5. PREPARACIÓN DE LA UÑA/04 - ¿EN CUÁL DE LAS CAPAS EL PRODUCTO PERMANECE ESTABLE.mp4"
+        },
+        {
+          "id": "preparacion-de-la-una/05-tabla-de-abrasividad",
+          "moduleId": "preparacion-de-la-una",
+          "title": "TABLA DE ABRASIVIDAD",
+          "position": 5,
+          "durationSeconds": 122,
+          "bytes": 25557397,
+          "file": "5. PREPARACIÓN DE LA UÑA/05 - TABLA DE ABRASIVIDAD.mp4"
+        }
+      ],
+      "durationSeconds": 1217
+    },
+    {
+      "id": "manicura",
+      "title": "MANICURA",
+      "position": 6,
+      "lessons": [
+        {
+          "id": "manicura/01-brocas-para-manicura",
+          "moduleId": "manicura",
+          "title": "BROCAS PARA MANICURA",
+          "position": 1,
+          "durationSeconds": 118,
+          "bytes": 25906356,
+          "file": "6. MANICURA/01 - BROCAS PARA MANICURA.mp4"
+        },
+        {
+          "id": "manicura/02-el-bolsillo",
+          "moduleId": "manicura",
+          "title": "EL BOLSILLO",
+          "position": 2,
+          "durationSeconds": 166,
+          "bytes": 31803426,
+          "file": "6. MANICURA/02 - EL BOLSILLO.mp4"
+        },
+        {
+          "id": "manicura/03-talco",
+          "moduleId": "manicura",
+          "title": "TALCO",
+          "position": 3,
+          "durationSeconds": 73,
+          "bytes": 12140271,
+          "file": "6. MANICURA/03 - TALCO.mp4"
+        },
+        {
+          "id": "manicura/04-fresa-flama",
+          "moduleId": "manicura",
+          "title": "FRESA FLAMA",
+          "position": 4,
+          "durationSeconds": 414,
+          "bytes": 56959611,
+          "file": "6. MANICURA/04 - FRESA FLAMA.mp4"
+        },
+        {
+          "id": "manicura/05-drill-torno",
+          "moduleId": "manicura",
+          "title": "DRILL, TORNO",
+          "position": 5,
+          "durationSeconds": 86,
+          "bytes": 10211970,
+          "file": "6. MANICURA/05 - DRILL, TORNO.mp4"
+        },
+        {
+          "id": "manicura/06-corte-de-cuticula",
+          "moduleId": "manicura",
+          "title": "CORTE DE CUTICULA",
+          "position": 6,
+          "durationSeconds": 97,
+          "bytes": 14764917,
+          "file": "6. MANICURA/06 - CORTE DE CUTICULA.mp4"
+        },
+        {
+          "id": "manicura/07-pulido-de-la-piel",
+          "moduleId": "manicura",
+          "title": "PULIDO DE LA PIEL",
+          "position": 7,
+          "durationSeconds": 293,
+          "bytes": 54328403,
+          "file": "6. MANICURA/07 - PULIDO DE LA PIEL.mp4"
+        },
+        {
+          "id": "manicura/08-preparacion-quimica",
+          "moduleId": "manicura",
+          "title": "PREPARACIÓN QUIMICA",
+          "position": 8,
+          "durationSeconds": 600,
+          "bytes": 113113238,
+          "file": "6. MANICURA/08 - PREPARACIÓN QUIMICA.mp4"
+        }
+      ],
+      "durationSeconds": 1847
+    },
+    {
+      "id": "teoria-del-builder-gel",
+      "title": "TEORIA DEL BUILDER GEL",
+      "position": 7,
+      "lessons": [
+        {
+          "id": "teoria-del-builder-gel/01-bienvenidos",
+          "moduleId": "teoria-del-builder-gel",
+          "title": "BIENVENIDOS",
+          "position": 1,
+          "durationSeconds": 41,
+          "bytes": 12465460,
+          "file": "7. TEORIA DEL BUILDER GEL/01 - BIENVENIDOS.mp4"
+        },
+        {
+          "id": "teoria-del-builder-gel/02-que-es-el-builder-gel",
+          "moduleId": "teoria-del-builder-gel",
+          "title": "¿QUE ES EL BUILDER GEL?",
+          "position": 2,
+          "durationSeconds": 208,
+          "bytes": 76570871,
+          "file": "7. TEORIA DEL BUILDER GEL/02 - ¿QUE ES EL BUILDER GEL.mp4"
+        },
+        {
+          "id": "teoria-del-builder-gel/03-importancia-de-los-ingredientes",
+          "moduleId": "teoria-del-builder-gel",
+          "title": "IMPORTANCIA DE LOS INGREDIENTES",
+          "position": 3,
+          "durationSeconds": 111,
+          "bytes": 40434845,
+          "file": "7. TEORIA DEL BUILDER GEL/03 - IMPORTANCIA DE LOS INGREDIENTES.mp4"
+        },
+        {
+          "id": "teoria-del-builder-gel/04-acrylates-copolymer",
+          "moduleId": "teoria-del-builder-gel",
+          "title": "ACRYLATES COPOLYMER",
+          "position": 4,
+          "durationSeconds": 130,
+          "bytes": 45601405,
+          "file": "7. TEORIA DEL BUILDER GEL/04 - ACRYLATES COPOLYMER.mp4"
+        },
+        {
+          "id": "teoria-del-builder-gel/05-isobornyl-methacrylate",
+          "moduleId": "teoria-del-builder-gel",
+          "title": "ISOBORNYL METHACRYLATE",
+          "position": 5,
+          "durationSeconds": 106,
+          "bytes": 34056571,
+          "file": "7. TEORIA DEL BUILDER GEL/05 - ISOBORNYL METHACRYLATE.mp4"
+        },
+        {
+          "id": "teoria-del-builder-gel/06-silica",
+          "moduleId": "teoria-del-builder-gel",
+          "title": "SILICA",
+          "position": 6,
+          "durationSeconds": 38,
+          "bytes": 13401024,
+          "file": "7. TEORIA DEL BUILDER GEL/06 - SILICA.mp4"
+        },
+        {
+          "id": "teoria-del-builder-gel/07-fotoiniciador",
+          "moduleId": "teoria-del-builder-gel",
+          "title": "FOTOINICIADOR",
+          "position": 7,
+          "durationSeconds": 38,
+          "bytes": 14073556,
+          "file": "7. TEORIA DEL BUILDER GEL/07 - FOTOINICIADOR.mp4"
+        },
+        {
+          "id": "teoria-del-builder-gel/08-lamparas",
+          "moduleId": "teoria-del-builder-gel",
+          "title": "LAMPARAS",
+          "position": 8,
+          "durationSeconds": 103,
+          "bytes": 34508573,
+          "file": "7. TEORIA DEL BUILDER GEL/08 - LAMPARAS.mp4"
+        },
+        {
+          "id": "teoria-del-builder-gel/09-codigo-del-color",
+          "moduleId": "teoria-del-builder-gel",
+          "title": "CODIGO DEL COLOR",
+          "position": 9,
+          "durationSeconds": 125,
+          "bytes": 41604303,
+          "file": "7. TEORIA DEL BUILDER GEL/09 - CODIGO DEL COLOR.mp4"
+        },
+        {
+          "id": "teoria-del-builder-gel/10-como-puedo-seleccionar-un-builder",
+          "moduleId": "teoria-del-builder-gel",
+          "title": "COMO PUEDO SELECCIONAR UN BUILDER",
+          "position": 10,
+          "durationSeconds": 63,
+          "bytes": 19566806,
+          "file": "7. TEORIA DEL BUILDER GEL/10 - COMO PUEDO SELECCIONAR UN BUILDER.mp4"
+        },
+        {
+          "id": "teoria-del-builder-gel/11-densidad-del-gel",
+          "moduleId": "teoria-del-builder-gel",
+          "title": "DENSIDAD DEL GEL",
+          "position": 11,
+          "durationSeconds": 330,
+          "bytes": 379970603,
+          "file": "7. TEORIA DEL BUILDER GEL/11 - DENSIDAD DEL GEL.mp4"
+        },
+        {
+          "id": "teoria-del-builder-gel/12-sensacion-termica",
+          "moduleId": "teoria-del-builder-gel",
+          "title": "SENSACIÓN TERMICA",
+          "position": 12,
+          "durationSeconds": 362,
+          "bytes": 393045601,
+          "file": "7. TEORIA DEL BUILDER GEL/12 - SENSACIÓN TERMICA.mp4"
+        }
+      ],
+      "durationSeconds": 1655
+    },
+    {
+      "id": "teoria-del-dual",
+      "title": "TEORIA DEL DUAL",
+      "position": 8,
+      "lessons": [
+        {
+          "id": "teoria-del-dual/01-inicio",
+          "moduleId": "teoria-del-dual",
+          "title": "INICIO",
+          "position": 1,
+          "durationSeconds": 51,
+          "bytes": 11358241,
+          "file": "8. TEORIA DEL DUAL/01 - INICIO.mp4"
+        },
+        {
+          "id": "teoria-del-dual/02-dual-form",
+          "moduleId": "teoria-del-dual",
+          "title": "DUAL FORM",
+          "position": 2,
+          "durationSeconds": 66,
+          "bytes": 14575632,
+          "file": "8. TEORIA DEL DUAL/02 - DUAL FORM.mp4"
+        },
+        {
+          "id": "teoria-del-dual/03-tipos-de-arcos",
+          "moduleId": "teoria-del-dual",
+          "title": "TIPOS DE ARCOS",
+          "position": 3,
+          "durationSeconds": 68,
+          "bytes": 16029156,
+          "file": "8. TEORIA DEL DUAL/03 - TIPOS DE ARCOS.mp4"
+        },
+        {
+          "id": "teoria-del-dual/04-apice-interno",
+          "moduleId": "teoria-del-dual",
+          "title": "APICE INTERNO",
+          "position": 4,
+          "durationSeconds": 32,
+          "bytes": 6354725,
+          "file": "8. TEORIA DEL DUAL/04 - APICE INTERNO.mp4"
+        },
+        {
+          "id": "teoria-del-dual/05-capsula-sin-apice",
+          "moduleId": "teoria-del-dual",
+          "title": "CAPSULA SIN APICE",
+          "position": 5,
+          "durationSeconds": 50,
+          "bytes": 10728906,
+          "file": "8. TEORIA DEL DUAL/05 - CAPSULA SIN APICE.mp4"
+        },
+        {
+          "id": "teoria-del-dual/06-apice-interno-marcado-alto",
+          "moduleId": "teoria-del-dual",
+          "title": "APICE INTERNO MARCADO ALTO",
+          "position": 6,
+          "durationSeconds": 71,
+          "bytes": 16016418,
+          "file": "8. TEORIA DEL DUAL/06 - APICE INTERNO MARCADO ALTO.mp4"
+        },
+        {
+          "id": "teoria-del-dual/07-apice-interno-natural",
+          "moduleId": "teoria-del-dual",
+          "title": "APICE INTERNO NATURAL",
+          "position": 7,
+          "durationSeconds": 60,
+          "bytes": 14069620,
+          "file": "8. TEORIA DEL DUAL/07 - APICE INTERNO NATURAL.mp4"
+        },
+        {
+          "id": "teoria-del-dual/08-errores-al-colocar-la-capsula",
+          "moduleId": "teoria-del-dual",
+          "title": "ERRORES AL COLOCAR LA CAPSULA",
+          "position": 8,
+          "durationSeconds": 210,
+          "bytes": 41045193,
+          "file": "8. TEORIA DEL DUAL/08 - ERRORES AL COLOCAR LA CAPSULA.mp4"
+        },
+        {
+          "id": "teoria-del-dual/09-distribucion-incorrecta",
+          "moduleId": "teoria-del-dual",
+          "title": "DISTRIBUCION INCORRECTA",
+          "position": 9,
+          "durationSeconds": 107,
+          "bytes": 20817608,
+          "file": "8. TEORIA DEL DUAL/09 - DISTRIBUCION INCORRECTA.mp4"
+        },
+        {
+          "id": "teoria-del-dual/10-una-estandar",
+          "moduleId": "teoria-del-dual",
+          "title": "UÑA ESTANDAR",
+          "position": 10,
+          "durationSeconds": 100,
+          "bytes": 17232817,
+          "file": "8. TEORIA DEL DUAL/10 - UÑA ESTANDAR.mp4"
+        },
+        {
+          "id": "teoria-del-dual/11-dual-cuadrado",
+          "moduleId": "teoria-del-dual",
+          "title": "DUAL CUADRADO",
+          "position": 11,
+          "durationSeconds": 104,
+          "bytes": 49742099,
+          "file": "8. TEORIA DEL DUAL/11 - DUAL CUADRADO.mp4"
+        },
+        {
+          "id": "teoria-del-dual/12-dual-natural-nails",
+          "moduleId": "teoria-del-dual",
+          "title": "DUAL NATURAL NAILS",
+          "position": 12,
+          "durationSeconds": 30,
+          "bytes": 13568168,
+          "file": "8. TEORIA DEL DUAL/12 - DUAL NATURAL NAILS.mp4"
+        },
+        {
+          "id": "teoria-del-dual/13-dual-bailarina",
+          "moduleId": "teoria-del-dual",
+          "title": "DUAL BAILARINA",
+          "position": 13,
+          "durationSeconds": 427,
+          "bytes": 231296247,
+          "file": "8. TEORIA DEL DUAL/13 - DUAL BAILARINA.mp4"
+        },
+        {
+          "id": "teoria-del-dual/14-precurado",
+          "moduleId": "teoria-del-dual",
+          "title": "PRECURADO",
+          "position": 14,
+          "durationSeconds": 108,
+          "bytes": 57698209,
+          "file": "8. TEORIA DEL DUAL/14 - PRECURADO.mp4"
+        }
+      ],
+      "durationSeconds": 1484
+    },
+    {
+      "id": "dual-lans",
+      "title": "DUAL LANS",
+      "position": 9,
+      "lessons": [
+        {
+          "id": "dual-lans/01-primer-y-base",
+          "moduleId": "dual-lans",
+          "title": "PRIMER Y BASE",
+          "position": 1,
+          "durationSeconds": 268,
+          "bytes": 92830204,
+          "file": "9. DUAL LANS/01 - PRIMER Y BASE.mp4"
+        },
+        {
+          "id": "dual-lans/02-aplicacion-del-rubber",
+          "moduleId": "dual-lans",
+          "title": "APLICACIÓN DEL RUBBER",
+          "position": 2,
+          "durationSeconds": 518,
+          "bytes": 179258737,
+          "file": "9. DUAL LANS/02 - APLICACIÓN DEL RUBBER.mp4"
+        },
+        {
+          "id": "dual-lans/03-elegir-el-builder-gel",
+          "moduleId": "dual-lans",
+          "title": "ELEGIR EL BUILDER GEL",
+          "position": 3,
+          "durationSeconds": 413,
+          "bytes": 169570612,
+          "file": "9. DUAL LANS/03 - ELEGIR EL BUILDER GEL.mp4"
+        },
+        {
+          "id": "dual-lans/04-elegir-el-dual",
+          "moduleId": "dual-lans",
+          "title": "ELEGIR EL DUAL",
+          "position": 4,
+          "durationSeconds": 394,
+          "bytes": 142278001,
+          "file": "9. DUAL LANS/04 - ELEGIR EL DUAL.mp4"
+        },
+        {
+          "id": "dual-lans/05-adaptacion-del-dual",
+          "moduleId": "dual-lans",
+          "title": "ADAPTACIÓN DEL DUAL",
+          "position": 5,
+          "durationSeconds": 939,
+          "bytes": 299912059,
+          "file": "9. DUAL LANS/05 - ADAPTACIÓN DEL DUAL.mp4"
+        },
+        {
+          "id": "dual-lans/06-limado-manual",
+          "moduleId": "dual-lans",
+          "title": "LIMADO MANUAL",
+          "position": 6,
+          "durationSeconds": 479,
+          "bytes": 225903398,
+          "file": "9. DUAL LANS/06 - LIMADO MANUAL.mp4"
+        },
+        {
+          "id": "dual-lans/07-limado-mecanico",
+          "moduleId": "dual-lans",
+          "title": "LIMADO MECANICO",
+          "position": 7,
+          "durationSeconds": 248,
+          "bytes": 102968708,
+          "file": "9. DUAL LANS/07 - LIMADO MECANICO.mp4"
+        },
+        {
+          "id": "dual-lans/08-limado-con-sponge",
+          "moduleId": "dual-lans",
+          "title": "LIMADO CON SPONGE",
+          "position": 8,
+          "durationSeconds": 241,
+          "bytes": 127613535,
+          "file": "9. DUAL LANS/08 - LIMADO CON SPONGE.mp4"
+        },
+        {
+          "id": "dual-lans/09-top-coat",
+          "moduleId": "dual-lans",
+          "title": "TOP COAT",
+          "position": 9,
+          "durationSeconds": 434,
+          "bytes": 181147960,
+          "file": "9. DUAL LANS/09 - TOP COAT.mp4"
+        },
+        {
+          "id": "dual-lans/10-top-coat",
+          "moduleId": "dual-lans",
+          "title": "TOP COAT",
+          "position": 10,
+          "durationSeconds": 103,
+          "bytes": 39564442,
+          "file": "9. DUAL LANS/10 - TOP COAT.mp4"
+        },
+        {
+          "id": "dual-lans/11-exfoliacion",
+          "moduleId": "dual-lans",
+          "title": "EXFOLIACIÓN",
+          "position": 11,
+          "durationSeconds": 110,
+          "bytes": 69179197,
+          "file": "9. DUAL LANS/11 - EXFOLIACIÓN.mp4"
+        },
+        {
+          "id": "dual-lans/12-hidratacion",
+          "moduleId": "dual-lans",
+          "title": "HIDRATACIÓN",
+          "position": 12,
+          "durationSeconds": 231,
+          "bytes": 115818823,
+          "file": "9. DUAL LANS/12 - HIDRATACIÓN.mp4"
+        },
+        {
+          "id": "dual-lans/13-fin",
+          "moduleId": "dual-lans",
+          "title": "FIN",
+          "position": 13,
+          "durationSeconds": 47,
+          "bytes": 11288873,
+          "file": "9. DUAL LANS/13 - FIN.mp4"
+        },
+        {
+          "id": "dual-lans/14-videos",
+          "moduleId": "dual-lans",
+          "title": "VIDEOS",
+          "position": 14,
+          "durationSeconds": 9,
+          "bytes": 4411527,
+          "file": "9. DUAL LANS/14 - VIDEOS.mp4"
+        }
+      ],
+      "durationSeconds": 4434
+    },
+    {
+      "id": "practica-french-con-capsulas",
+      "title": "PRACTICA - FRENCH CON CAPSULAS",
+      "position": 10,
+      "lessons": [
+        {
+          "id": "practica-french-con-capsulas/01-elegir-el-dual",
+          "moduleId": "practica-french-con-capsulas",
+          "title": "ELEGIR EL DUAL",
+          "position": 1,
+          "durationSeconds": 503,
+          "bytes": 152217565,
+          "file": "10. PRACTICA - FRENCH CON CAPSULAS/01 - ELEGIR EL DUAL.mp4"
+        },
+        {
+          "id": "practica-french-con-capsulas/02-aplicacion-del-gel-en-el-borde-libre",
+          "moduleId": "practica-french-con-capsulas",
+          "title": "APLICACION DEL GEL EN EL BORDE LIBRE",
+          "position": 2,
+          "durationSeconds": 674,
+          "bytes": 188695857,
+          "file": "10. PRACTICA - FRENCH CON CAPSULAS/02 - APLICACION DEL GEL EN EL BORDE LIBRE.mp4"
+        },
+        {
+          "id": "practica-french-con-capsulas/03-aplicacion-del-gel-cover",
+          "moduleId": "practica-french-con-capsulas",
+          "title": "APLICACIÓN DEL GEL COVER",
+          "position": 3,
+          "durationSeconds": 500,
+          "bytes": 156609729,
+          "file": "10. PRACTICA - FRENCH CON CAPSULAS/03 - APLICACIÓN DEL GEL COVER.mp4"
+        },
+        {
+          "id": "practica-french-con-capsulas/04-top-coat",
+          "moduleId": "practica-french-con-capsulas",
+          "title": "TOP COAT",
+          "position": 4,
+          "durationSeconds": 377,
+          "bytes": 111706591,
+          "file": "10. PRACTICA - FRENCH CON CAPSULAS/04 - TOP COAT.mp4"
+        },
+        {
+          "id": "practica-french-con-capsulas/05-aceite",
+          "moduleId": "practica-french-con-capsulas",
+          "title": "ACEITE",
+          "position": 5,
+          "durationSeconds": 133,
+          "bytes": 46591211,
+          "file": "10. PRACTICA - FRENCH CON CAPSULAS/05 - ACEITE.mp4"
+        },
+        {
+          "id": "practica-french-con-capsulas/06-final",
+          "moduleId": "practica-french-con-capsulas",
+          "title": "FINAL",
+          "position": 6,
+          "durationSeconds": 111,
+          "bytes": 19177918,
+          "file": "10. PRACTICA - FRENCH CON CAPSULAS/06 - FINAL.mp4"
+        }
+      ],
+      "durationSeconds": 2298
+    }
+  ],
+  "lessonCount": 77,
+  "durationSeconds": 16247,
+  "bytes": 5364379976
+}

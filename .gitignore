@@ -1,0 +1,22 @@
+node_modules/
+.next/
+out/
+build/
+*.tsbuildinfo
+next-env.d.ts
+build.log
+
+# Contenido audiovisual: material de pago (~5 GB), no se versiona.
+/media/
+
+# Estado local generado en tiempo de ejecución.
+/data/progress.json
+/data/progress.json.tmp
+/data/*.corrupt-*
+
+.env
+.env.local
+.env.*.local
+
+.DS_Store
+Thumbs.db

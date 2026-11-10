@@ -1,0 +1,31 @@
+{
+  "name": "app-master-creator",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Entorno local de curso y reproducción para Refuerzo Master Creador Lans",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "content:build": "bun run scripts/build-course.ts"
+  },
+  "dependencies": {
+    "@effect/platform": "0.97.2",
+    "@effect/platform-node": "0.99.0",
+    "effect": "3.22.4",
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "10.14.0",
+    "eslint-config-next": "16.4.6",
+    "typescript": "5.9.3"
+  }
+}
