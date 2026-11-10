@@ -162,6 +162,10 @@ Los vídeos **no** se copian dentro del instalador: la primera vez la app pide
 la carpeta `media/` y la recuerda. Así el instalador pesa ~150 MB en vez de
 5 GB, y puedes mover o respaldar los vídeos sin reinstalar.
 
+El instalador queda en `src-tauri/target/release/bundle/nsis/`. No está
+firmado, así que Windows SmartScreen puede avisar la primera vez: «Más
+información → Ejecutar de todas formas».
+
 ## Aviso
 
 Los vídeos son material con copyright de Lans Studios y se usan aquí para

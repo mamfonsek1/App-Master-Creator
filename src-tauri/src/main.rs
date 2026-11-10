@@ -22,6 +22,14 @@ struct Config {
     media_dir: String,
 }
 
+fn error_dialog(title: &str, description: &str) {
+    rfd::MessageDialog::new()
+        .set_title(title)
+        .set_description(description)
+        .set_level(rfd::MessageLevel::Error)
+        .show();
+}
+
 fn free_port() -> Result<u16, Box<dyn std::error::Error>> {
     let listener = TcpListener::bind("127.0.0.1:0")?;
     Ok(listener.local_addr()?.port())
@@ -41,8 +49,51 @@ fn wait_until_ready(port: u16) -> bool {
     false
 }
 
+/// Comprueba que la carpeta elegida parece la del curso: al menos un `.mp4`
+/// en ella o en un subdirectorio inmediato.
+fn has_videos(directory: &Path) -> bool {
+    let Ok(entries) = std::fs::read_dir(directory) else {
+        return false;
+    };
+
+    for entry in entries.flatten() {
+        let path = entry.path();
+
+        if path.is_file() && path.extension().is_some_and(|ext| ext.eq_ignore_ascii_case("mp4")) {
+            return true;
+        }
+
+        if path.is_dir() {
+            if let Ok(children) = std::fs::read_dir(&path) {
+                let found = children.flatten().any(|child| {
+                    let child_path = child.path();
+                    child_path.is_file()
+                        && child_path
+                            .extension()
+                            .is_some_and(|ext| ext.eq_ignore_ascii_case("mp4"))
+                });
+
+                if found {
+                    return true;
+                }
+            }
+        }
+    }
+
+    false
+}
+
+fn save_config(config_path: &Path, media_dir: &str) -> Option<()> {
+    let payload = serde_json::to_string_pretty(&Config {
+        media_dir: media_dir.to_string(),
+    })
+    .ok()?;
+
+    std::fs::write(config_path, payload).ok()
+}
+
 /// Lee la carpeta de vídeos de la configuración. Si no existe (o apunta a una
-/// ruta que ya no está), pide al usuario que la elija una vez.
+/// ruta que ya no está), pide al usuario que la elija.
 fn resolve_media_dir(app: &tauri::AppHandle) -> Option<String> {
     let data_dir = app.path().app_data_dir().ok()?;
     std::fs::create_dir_all(&data_dir).ok()?;
@@ -50,25 +101,32 @@ fn resolve_media_dir(app: &tauri::AppHandle) -> Option<String> {
 
     if let Ok(raw) = std::fs::read_to_string(&config_path) {
         if let Ok(config) = serde_json::from_str::<Config>(&raw) {
-            if Path::new(&config.media_dir).is_dir() {
+            let configured = PathBuf::from(&config.media_dir);
+
+            if configured.is_dir() && has_videos(&configured) {
                 return Some(config.media_dir);
             }
         }
     }
 
-    let picked = rfd::FileDialog::new()
-        .set_title("Selecciona la carpeta «media» del curso")
-        .pick_folder()?;
+    for _ in 0..3 {
+        let picked = rfd::FileDialog::new()
+            .set_title("Selecciona la carpeta «media» del curso")
+            .pick_folder()?;
 
-    let media_dir = picked.to_string_lossy().to_string();
-    let payload = serde_json::to_string_pretty(&Config {
-        media_dir: media_dir.clone(),
-    })
-    .ok()?;
+        if has_videos(&picked) {
+            let media_dir = picked.to_string_lossy().to_string();
+            save_config(&config_path, &media_dir)?;
+            return Some(media_dir);
+        }
 
-    std::fs::write(config_path, payload).ok()?;
+        error_dialog(
+            "Aula Lans",
+            "Esa carpeta no contiene los vídeos del curso.\n\nElige la carpeta «media», que dentro tiene una carpeta por módulo con archivos .mp4.",
+        );
+    }
 
-    Some(media_dir)
+    None
 }
 
 fn spawn_server(
@@ -87,6 +145,7 @@ fn spawn_server(
         .arg("server.js")
         .current_dir(&server_dir)
         .env("NODE_ENV", "production")
+        .env("NEXT_TELEMETRY_DISABLED", "1")
         .env("PORT", port.to_string())
         .env("HOSTNAME", "127.0.0.1")
         .env("MEDIA_DIR", media_dir)
@@ -104,8 +163,16 @@ fn main() {
         .setup(|app| {
             let handle = app.handle().clone();
 
-            let media_dir = resolve_media_dir(&handle)
-                .ok_or("No se seleccionó la carpeta de vídeos del curso.")?;
+            let media_dir = match resolve_media_dir(&handle) {
+                Some(directory) => directory,
+                None => {
+                    error_dialog(
+                        "Aula Lans",
+                        "Sin la carpeta de vídeos no se puede abrir el aula.\n\nVuelve a abrir la app y elige la carpeta «media» del curso.",
+                    );
+                    return Err("No se seleccionó la carpeta de vídeos del curso.".into());
+                }
+            };
 
             let port = free_port()?;
             let child = spawn_server(&handle, port, &media_dir)?;
@@ -113,6 +180,10 @@ fn main() {
             app.manage(ServerProcess(Mutex::new(Some(child))));
 
             if !wait_until_ready(port) {
+                error_dialog(
+                    "Aula Lans",
+                    "El servidor del aula no respondió a tiempo.\n\nPrueba a cerrar la app y abrirla de nuevo.",
+                );
                 return Err("El servidor del aula no respondió a tiempo.".into());
             }
 
