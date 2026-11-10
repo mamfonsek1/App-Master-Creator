@@ -222,10 +222,25 @@ fn start(app: &tauri::AppHandle) -> Result<(), Box<dyn std::error::Error>> {
         .parse()
         .map_err(|_| "URL del servidor inválida.")?;
 
+    // Ajusta la ventana al monitor: en pantallas pequeñas 1360×900 no cabe.
+    let (width, height) = match app.primary_monitor() {
+        Ok(Some(monitor)) => {
+            let scale = monitor.scale_factor();
+            let logical_width = monitor.size().width as f64 / scale;
+            let logical_height = monitor.size().height as f64 / scale;
+
+            (
+                (logical_width * 0.92).clamp(960.0, 1440.0),
+                (logical_height * 0.88).clamp(640.0, 900.0),
+            )
+        }
+        _ => (1280.0, 820.0),
+    };
+
     WebviewWindowBuilder::new(app, "main", WebviewUrl::External(url))
         .title("Aula Lans")
-        .inner_size(1360.0, 900.0)
-        .min_inner_size(960.0, 640.0)
+        .inner_size(width, height)
+        .min_inner_size(900.0, 600.0)
         .center()
         .build()?;
 
