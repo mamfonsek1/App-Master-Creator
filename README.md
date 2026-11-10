@@ -132,6 +132,36 @@ DATABASE_FILE=data/verify.db bun run scripts/smoke.ts
 El smoke test usa una base temporal y verifica registro, duplicados,
 contraseña incorrecta, sesión, aislamiento de progreso y cierre de sesión.
 
+## App de escritorio (Tauri)
+
+El aula también se empaqueta como aplicación de Windows: una ventana propia,
+sin navegador ni terminal, que arranca su servidor interno y lo apaga al
+cerrarse.
+
+```bash
+bun run desktop:build
+```
+
+Eso hace, en orden:
+
+1. `next build` en modo `standalone`.
+2. Copia el servidor, `public/`, `content/` y el `node.exe` del sistema a
+   `src-tauri/resources/`.
+3. `tauri build`, que genera el ejecutable y el instalador NSIS en
+   `src-tauri/target/release/bundle/nsis/`.
+
+Requisitos para compilar: Rust (`rustup`) y Visual Studio Build Tools con el
+workload de C++. WebView2 ya viene con Windows 10/11.
+
+La app instalada guarda en `%APPDATA%\com.lans.aula`:
+
+- `aula.db` — cuentas, sesiones y progreso.
+- `config.json` — ruta de la carpeta de vídeos elegida en el primer arranque.
+
+Los vídeos **no** se copian dentro del instalador: la primera vez la app pide
+la carpeta `media/` y la recuerda. Así el instalador pesa ~150 MB en vez de
+5 GB, y puedes mover o respaldar los vídeos sin reinstalar.
+
 ## Aviso
 
 Los vídeos son material con copyright de Lans Studios y se usan aquí para

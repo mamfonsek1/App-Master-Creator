@@ -14,6 +14,11 @@ build.log
 /data/*.db-wal
 /data/*.db-shm
 
+# Escritorio (Tauri): binarios y recursos generados.
+/src-tauri/target/
+/src-tauri/resources/
+/src-tauri/icon-source.png
+
 .env
 .env.local
 .env.*.local
