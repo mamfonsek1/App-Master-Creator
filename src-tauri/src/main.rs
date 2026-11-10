@@ -100,7 +100,9 @@ fn resolve_media_dir(app: &tauri::AppHandle) -> Option<String> {
     let config_path = data_dir.join("config.json");
 
     if let Ok(raw) = std::fs::read_to_string(&config_path) {
-        if let Ok(config) = serde_json::from_str::<Config>(&raw) {
+        let trimmed = raw.trim_start_matches('\u{feff}');
+
+        if let Ok(config) = serde_json::from_str::<Config>(trimmed) {
             let configured = PathBuf::from(&config.media_dir);
 
             if configured.is_dir() && has_videos(&configured) {
@@ -134,14 +136,31 @@ fn spawn_server(
     port: u16,
     media_dir: &str,
 ) -> Result<Child, Box<dyn std::error::Error>> {
-    let resources = app.path().resource_dir()?;
+    let resource_root = app.path().resource_dir()?;
+    // El bundler copia `src-tauri/resources/**` a `{resource_dir}/resources/**`.
+    let bundled = resource_root.join("resources");
+    let resources = if bundled.is_dir() {
+        bundled
+    } else {
+        resource_root
+    };
+
     let server_dir = resources.join("server");
     let node = resources.join("node.exe");
     let data_dir = app.path().app_data_dir()?;
 
     std::fs::create_dir_all(&data_dir)?;
 
-    let child = Command::new(node)
+    if !node.is_file() {
+        return Err(format!("No se encontró el runtime en {}", node.display()).into());
+    }
+
+    if !server_dir.is_dir() {
+        return Err(format!("No se encontró el servidor en {}", server_dir.display()).into());
+    }
+
+    let mut command = Command::new(node);
+    command
         .arg("server.js")
         .current_dir(&server_dir)
         .env("NODE_ENV", "production")
@@ -152,10 +171,65 @@ fn spawn_server(
         .env("DATABASE_FILE", data_dir.join("aula.db"))
         .env("CONTENT_FILE", server_dir.join("content").join("course.json"))
         .stdout(Stdio::null())
-        .stderr(Stdio::null())
-        .spawn()?;
+        .stderr(Stdio::null());
+
+    // Sin esto, Windows abre una consola negra para el servidor interno.
+    #[cfg(windows)]
+    {
+        use std::os::windows::process::CommandExt;
+        const CREATE_NO_WINDOW: u32 = 0x0800_0000;
+        command.creation_flags(CREATE_NO_WINDOW);
+    }
+
+    let child = command.spawn()?;
 
     Ok(child)
+}
+
+/// Deja constancia de los fallos de arranque: la app no tiene consola.
+fn log_startup_error(app: &tauri::AppHandle, message: &str) {
+    let Ok(data_dir) = app.path().app_data_dir() else {
+        return;
+    };
+
+    let _ = std::fs::create_dir_all(&data_dir);
+    let _ = std::fs::write(
+        data_dir.join("startup.log"),
+        format!("{}\n{}\n", chrono_like_now(), message),
+    );
+}
+
+fn chrono_like_now() -> String {
+    match std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH) {
+        Ok(elapsed) => format!("unix={}", elapsed.as_secs()),
+        Err(_) => "unix=0".to_string(),
+    }
+}
+
+fn start(app: &tauri::AppHandle) -> Result<(), Box<dyn std::error::Error>> {
+    let media_dir = resolve_media_dir(app).ok_or("No se seleccionó la carpeta de vídeos del curso.")?;
+
+    let port = free_port()?;
+    let child = spawn_server(app, port, &media_dir)?;
+
+    app.manage(ServerProcess(Mutex::new(Some(child))));
+
+    if !wait_until_ready(port) {
+        return Err("El servidor del aula no respondió a tiempo.".into());
+    }
+
+    let url = format!("http://127.0.0.1:{port}")
+        .parse()
+        .map_err(|_| "URL del servidor inválida.")?;
+
+    WebviewWindowBuilder::new(app, "main", WebviewUrl::External(url))
+        .title("Aula Lans")
+        .inner_size(1360.0, 900.0)
+        .min_inner_size(960.0, 640.0)
+        .center()
+        .build()?;
+
+    Ok(())
 }
 
 fn main() {
@@ -163,42 +237,20 @@ fn main() {
         .setup(|app| {
             let handle = app.handle().clone();
 
-            let media_dir = match resolve_media_dir(&handle) {
-                Some(directory) => directory,
-                None => {
+            match start(&handle) {
+                Ok(()) => Ok(()),
+                Err(error) => {
+                    let message = error.to_string();
+                    log_startup_error(&handle, &message);
                     error_dialog(
                         "Aula Lans",
-                        "Sin la carpeta de vídeos no se puede abrir el aula.\n\nVuelve a abrir la app y elige la carpeta «media» del curso.",
+                        &format!(
+                            "No se pudo iniciar el aula.\n\n{message}\n\nDetalle en:\n%APPDATA%\\com.lans.aula\\startup.log"
+                        ),
                     );
-                    return Err("No se seleccionó la carpeta de vídeos del curso.".into());
+                    Err(error)
                 }
-            };
-
-            let port = free_port()?;
-            let child = spawn_server(&handle, port, &media_dir)?;
-
-            app.manage(ServerProcess(Mutex::new(Some(child))));
-
-            if !wait_until_ready(port) {
-                error_dialog(
-                    "Aula Lans",
-                    "El servidor del aula no respondió a tiempo.\n\nPrueba a cerrar la app y abrirla de nuevo.",
-                );
-                return Err("El servidor del aula no respondió a tiempo.".into());
             }
-
-            let url = format!("http://127.0.0.1:{port}")
-                .parse()
-                .map_err(|_| "URL del servidor inválida.")?;
-
-            WebviewWindowBuilder::new(app, "main", WebviewUrl::External(url))
-                .title("Aula Lans")
-                .inner_size(1360.0, 900.0)
-                .min_inner_size(960.0, 640.0)
-                .center()
-                .build()?;
-
-            Ok(())
         })
         .build(tauri::generate_context!())
         .expect("no se pudo iniciar la aplicación");
