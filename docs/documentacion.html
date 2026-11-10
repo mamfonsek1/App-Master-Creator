@@ -1,0 +1,600 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Documentación App · Aula Lans</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14130f; --soft:#4a4741; --paper:#fbf9f6; --line:#e6e1d8; --line-strong:#d5cfc3;
+    --blue:#0072ef; --grey:#8c8880; --code-bg:#f3efe7;
+  }
+  *{ box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  html,body{ margin:0; padding:0; }
+  body{ font-family:'Inter',"Segoe UI",Arial,sans-serif; color:var(--ink); background:#fff; font-size:10.5pt; line-height:1.6; }
+  @page{ size:A4; margin:18mm 17mm 16mm 17mm; }
+  @page cover{ margin:0; }
+
+  h1,h2,h3,h4{ font-family:'EB Garamond',Georgia,serif; font-weight:500; line-height:1.15; margin:0; }
+
+  .cover{ page:cover; height:296mm; display:flex; flex-direction:column; justify-content:space-between; background:#0b0b0b; color:#fff; padding:18mm 17mm; }
+  .cover .top{ display:flex; justify-content:space-between; align-items:baseline; }
+  .cover .wordmark{ font-family:'EB Garamond',Georgia,serif; letter-spacing:.32em; text-transform:uppercase; font-size:10pt; }
+  .cover .tag{ font-size:8pt; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.45); }
+  .cover h1{ font-size:46pt; line-height:1.03; }
+  .cover h1 em{ font-style:italic; font-weight:400; }
+  .cover .rule{ width:26mm; height:2px; background:var(--blue); margin:0 0 10mm; }
+  .cover .sub{ margin-top:8mm; color:rgba(255,255,255,.62); font-weight:300; font-size:11pt; max-width:38ch; }
+  .cover .meta{ display:flex; gap:26mm; border-top:1px solid rgba(255,255,255,.16); padding-top:6mm; font-size:8pt; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.5); }
+
+  .page{ page-break-before:always; }
+  .page:first-of-type{ page-break-before:auto; }
+
+  h2.section{ font-size:24pt; margin:0 0 2mm; }
+  .section-no{ font-size:8pt; letter-spacing:.22em; text-transform:uppercase; color:var(--blue); font-weight:600; }
+  .section-rule{ height:1px; background:var(--line-strong); margin:4mm 0 7mm; }
+  h3{ font-size:14pt; margin:7mm 0 2.5mm; break-after:avoid; page-break-after:avoid; }
+  h2.section{ break-after:avoid; page-break-after:avoid; }
+  table{ break-inside:avoid; page-break-inside:avoid; }
+  pre{ break-inside:avoid; page-break-inside:avoid; }
+  h4{ font-size:11.5pt; margin:5mm 0 2mm; }
+  p{ margin:0 0 3mm; }
+  ul,ol{ margin:0 0 3mm; padding-left:5mm; }
+  li{ margin-bottom:1.4mm; }
+
+  table{ width:100%; border-collapse:collapse; margin:2mm 0 5mm; font-size:9.2pt; }
+  th{ text-align:left; font-size:7.6pt; letter-spacing:.14em; text-transform:uppercase; color:var(--grey); font-weight:600; padding:0 0 2mm; border-bottom:1px solid var(--ink); }
+  td{ padding:2.2mm 0; border-bottom:1px solid var(--line); vertical-align:top; }
+  td code{ white-space:nowrap; }
+
+  code{ font-family:ui-monospace,Consolas,"Cascadia Mono",monospace; font-size:8.8pt; background:var(--code-bg); padding:.6mm 1.4mm; border-radius:2px; }
+  pre{ background:var(--code-bg); border-left:2px solid var(--blue); padding:4mm 5mm; margin:2mm 0 5mm; overflow:hidden; }
+  pre code{ background:none; padding:0; font-size:8.6pt; line-height:1.5; }
+
+  .note{ background:var(--paper); border-left:2px solid var(--blue); padding:3.5mm 5mm; margin:3mm 0 5mm; font-size:9.4pt; color:var(--soft); }
+  .warn{ background:#fdf3ec; border-left:2px solid #b4692b; padding:3.5mm 5mm; margin:3mm 0 5mm; font-size:9.4pt; color:#6b3d15; }
+
+  .toc{ margin-top:4mm; }
+  .toc a{ display:flex; align-items:baseline; gap:3mm; padding:2.2mm 0; border-bottom:1px solid var(--line); color:var(--ink); text-decoration:none; font-size:10pt; }
+  .toc a .n{ font-family:'EB Garamond',Georgia,serif; color:var(--blue); min-width:8mm; }
+  .toc a .t{ flex:1; }
+  .toc a .d{ color:var(--grey); font-size:8.5pt; }
+
+  .cols{ display:grid; grid-template-columns:1fr 1fr; gap:6mm; }
+  .kpi{ display:flex; gap:10mm; margin:3mm 0 6mm; }
+  .kpi div{ flex:1; }
+  .kpi .v{ font-family:'EB Garamond',Georgia,serif; font-size:20pt; line-height:1; }
+  .kpi .l{ font-size:7.4pt; letter-spacing:.16em; text-transform:uppercase; color:var(--grey); margin-top:2mm; }
+
+  .small{ font-size:9pt; color:var(--soft); }
+  .muted{ color:var(--grey); }
+  .avoid{ page-break-inside:avoid; }
+</style>
+</head>
+<body>
+
+<!-- ============================ PORTADA ============================ -->
+<section class="cover">
+  <div class="top">
+    <div class="wordmark">Lans Studios</div>
+    <div class="tag">Documentación técnica</div>
+  </div>
+
+  <div>
+    <div class="rule"></div>
+    <h1>Documentación<br><em>App</em></h1>
+    <div class="sub">Aula local del curso Refuerzo Master Creador Lans: aplicación web, app de escritorio, cuentas, datos y mantenimiento.</div>
+  </div>
+
+  <div class="meta">
+    <span>Versión 1.0.0</span>
+    <span>Noviembre 2026</span>
+    <span>Uso personal</span>
+  </div>
+</section>
+
+<!-- ============================ ÍNDICE ============================ -->
+<section class="page">
+  <span class="section-no">Contenido</span>
+  <h2 class="section">Índice</h2>
+  <div class="section-rule"></div>
+
+  <nav class="toc">
+    <a href="#s1"><span class="n">01</span><span class="t">Qué es esta aplicación</span><span class="d">Propósito y alcance</span></a>
+    <a href="#s2"><span class="n">02</span><span class="t">Cómo se usa</span><span class="d">Cuentas, reproducción, índice, modo oscuro</span></a>
+    <a href="#s3"><span class="n">03</span><span class="t">Arquitectura</span><span class="d">Stack, capas y estructura</span></a>
+    <a href="#s4"><span class="n">04</span><span class="t">App de escritorio</span><span class="d">Tauri, arranque, datos, instalador</span></a>
+    <a href="#s5"><span class="n">05</span><span class="t">Datos</span><span class="d">SQLite, modelo de contenido, copias</span></a>
+    <a href="#s6"><span class="n">06</span><span class="t">API y contratos</span><span class="d">Rutas, cuerpos y respuestas</span></a>
+    <a href="#s7"><span class="n">07</span><span class="t">Scripts y comandos</span><span class="d">Desarrollo, empaquetado, pruebas</span></a>
+    <a href="#s8"><span class="n">08</span><span class="t">Verificación</span><span class="d">Qué se probó y con qué resultado</span></a>
+    <a href="#s9"><span class="n">09</span><span class="t">Problemas frecuentes</span><span class="d">Diagnóstico y soluciones</span></a>
+    <a href="#s10"><span class="n">10</span><span class="t">Mantenimiento</span><span class="d">Actualizar vídeos, reconstruir, respaldar</span></a>
+    <a href="#s11"><span class="n">11</span><span class="t">Nota legal</span><span class="d">Uso del contenido</span></a>
+  </nav>
+
+  <div class="note" style="margin-top:10mm">
+    Esta documentación describe la aplicación tal como está instalada en este equipo. Los datos sensibles
+    (contraseñas) no se incluyen: solo se explica dónde viven y cómo cambiarlos.
+  </div>
+</section>
+
+<!-- ============================ 1 ============================ -->
+<section class="page" id="s1">
+  <span class="section-no">01</span>
+  <h2 class="section">Qué es esta aplicación</h2>
+  <div class="section-rule"></div>
+
+  <p>Un aula local para ver el curso <strong>Refuerzo Master Creador Lans</strong> sin depender de la plataforma
+  original. Los vídeos viven en el disco del equipo, la aplicación los reproduce, recuerda por dónde va cada
+  persona y no necesita conexión a internet.</p>
+
+  <div class="kpi">
+    <div><div class="v">77</div><div class="l">Lecciones</div></div>
+    <div><div class="v">10</div><div class="l">Módulos</div></div>
+    <div><div class="v">4 h 31</div><div class="l">De contenido</div></div>
+    <div><div class="v">5,0 GB</div><div class="l">En local · 1080p</div></div>
+  </div>
+
+  <h3>Qué resuelve</h3>
+  <ul>
+    <li><strong>Caducidad de la plataforma.</strong> El curso se conserva y se puede ver en cualquier momento.</li>
+    <li><strong>Progreso por persona.</strong> María, Hylary y Yeisy tienen su propia cuenta y su propio avance.</li>
+    <li><strong>Sin fricción.</strong> Se abre como una app de Windows: ventana propia, sin navegador ni terminal.</li>
+    <li><strong>Todo en el equipo.</strong> Ni cuentas en la nube ni sincronización: los datos no salen de aquí.</li>
+  </ul>
+
+  <h3>Qué incluye</h3>
+  <table>
+    <tr><th>Componente</th><th>Descripción</th></tr>
+    <tr><td>Aplicación web</td><td>Temario, reproductor, índice, ajustes y API. Next.js + React.</td></tr>
+    <tr><td>App de escritorio</td><td>Envoltorio Tauri que arranca el servidor y abre una ventana nativa.</td></tr>
+    <tr><td>Base de datos</td><td>SQLite con cuentas, sesiones y progreso.</td></tr>
+    <tr><td>Contenido</td><td>77 vídeos MP4 en <code>media/</code> y un <code>course.json</code> generado.</td></tr>
+    <tr><td>Material</td><td>Índice del curso en PDF dentro de <code>docs/</code>.</td></tr>
+  </table>
+
+  <h3>Dónde está cada cosa</h3>
+  <table>
+    <tr><th>Elemento</th><th>Ruta</th></tr>
+    <tr><td>Proyecto y vídeos</td><td><code>C:\Users\Maria\Downloads\Lans Studios</code></td></tr>
+    <tr><td>App instalada</td><td><code>%LOCALAPPDATA%\Aula Lans</code></td></tr>
+    <tr><td>Datos de la app</td><td><code>%APPDATA%\com.lans.aula</code></td></tr>
+    <tr><td>Instalador</td><td><code>Aula Lans - Instalador.exe</code> (raíz del proyecto)</td></tr>
+    <tr><td>Repositorio</td><td><code>github.com/mamfonsek1/App-Master-Creator</code></td></tr>
+  </table>
+</section>
+
+<!-- ============================ 2 ============================ -->
+<section class="page" id="s2">
+  <span class="section-no">02</span>
+  <h2 class="section">Cómo se usa</h2>
+  <div class="section-rule"></div>
+
+  <h3>Cuentas</h3>
+  <table>
+    <tr><th>Persona</th><th>Usuario</th><th>Rol</th><th>Puede</th></tr>
+    <tr><td>María</td><td><code>maria</code></td><td>Administradora</td><td>Todo, incluida la gestión de cuentas</td></tr>
+    <tr><td>Hylary</td><td><code>hylary</code></td><td>Miembro</td><td>Ver el curso y su progreso</td></tr>
+    <tr><td>Yeisy</td><td><code>yeisy</code></td><td>Miembro</td><td>Ver el curso y su progreso</td></tr>
+  </table>
+
+  <div class="note">
+    La contraseña temporal inicial es la misma para las tres. Cámbiala en <strong>Ajustes → Cambiar
+    contraseña</strong>. Las contraseñas se guardan cifradas con scrypt: nadie puede leerlas, solo restablecerlas.
+  </div>
+
+  <h3>Primer arranque de la app de escritorio</h3>
+  <ol>
+    <li>Abre <strong>Aula Lans</strong> desde el menú Inicio.</li>
+    <li>La primera vez pide la carpeta de vídeos: elige <code>C:\Users\Maria\Downloads\Lans Studios\media</code>.</li>
+    <li>La app la valida (debe contener archivos <code>.mp4</code> en subcarpetas) y la recuerda.</li>
+    <li>Inicia sesión con tu cuenta.</li>
+  </ol>
+
+  <h3>Reproducción</h3>
+  <ul>
+    <li>El progreso se guarda cada 5 segundos y al pausar. Al 90 % la lección se marca como vista.</li>
+    <li>Si cierras a mitad, al volver retoma donde lo dejaste.</li>
+    <li>Atajos: <code>espacio</code> reproducir/pausar, <code>←</code> y <code>→</code> ±5 s, <code>M</code> silenciar, <code>N</code> siguiente.</li>
+    <li>Una lección vista no se desmarca aunque la vuelvas a reproducir.</li>
+  </ul>
+
+  <h3>Menú de usuario</h3>
+  <p>Bajo tu nombre, en la cabecera:</p>
+  <ul>
+    <li><strong>Ajustes de la cuenta</strong>: datos, cambio de contraseña y, si eres administradora, gestión de las otras cuentas (crear, restablecer contraseña, eliminar).</li>
+    <li><strong>Modo oscuro</strong>: cambia la paleta y se recuerda entre sesiones.</li>
+    <li><strong>Cerrar sesión</strong>.</li>
+  </ul>
+
+  <h3>Índice</h3>
+  <p>El enlace <strong>Índice</strong> de la cabecera (y el de la portada) abre una página dentro de la app con
+  los 10 módulos, las 77 lecciones, su duración y un enlace directo a cada una. No abre un PDF ni una pestaña
+  externa.</p>
+</section>
+
+<!-- ============================ 3 ============================ -->
+<section class="page" id="s3">
+  <span class="section-no">03</span>
+  <h2 class="section">Arquitectura</h2>
+  <div class="section-rule"></div>
+
+  <h3>Stack</h3>
+  <table>
+    <tr><th>Capa</th><th>Tecnología</th><th>Versión</th></tr>
+    <tr><td>Framework web</td><td>Next.js (App Router)</td><td>16.4.6</td></tr>
+    <tr><td>UI</td><td>React</td><td>19.3.1</td></tr>
+    <tr><td>Lenguaje</td><td>TypeScript (strict)</td><td>5.9.3</td></tr>
+    <tr><td>Efectos y datos</td><td>Effect + @effect/platform</td><td>3.22.4</td></tr>
+    <tr><td>Base de datos</td><td>SQLite (<code>node:sqlite</code>)</td><td>Node 26</td></tr>
+    <tr><td>Gestor y scripts</td><td>Bun</td><td>1.4.4</td></tr>
+    <tr><td>Escritorio</td><td>Tauri</td><td>2.x</td></tr>
+  </table>
+
+  <h3>Capas</h3>
+  <table>
+    <tr><th>Carpeta</th><th>Responsabilidad</th></tr>
+    <tr><td><code>src/domain</code></td><td>Esquemas <code>Schema</code> de curso y progreso, y reglas puras (índice, vecinos, resumen).</td></tr>
+    <tr><td><code>src/server</code></td><td>Servicios Effect: base de datos, curso, progreso, autenticación, sesión y streaming.</td></tr>
+    <tr><td><code>src/app</code></td><td>Rutas, páginas y handlers de API.</td></tr>
+    <tr><td><code>src/components</code></td><td>Interfaz: cabecera, temario, reproductor, menú de usuario.</td></tr>
+    <tr><td><code>scripts</code></td><td>Generación de contenido, cuentas, pruebas y empaquetado.</td></tr>
+    <tr><td><code>src-tauri</code></td><td>Envoltorio de escritorio en Rust.</td></tr>
+  </table>
+
+  <h3>Estructura del proyecto</h3>
+<pre><code>media/                     77 vídeos, una carpeta por módulo (no se versiona)
+content/
+  source-manifest.json     Export de la plataforma (títulos, duraciones)
+  course.json              Generado: modelo que consume la app
+data/aula.db               SQLite de desarrollo (no se versiona)
+docs/                      Índice del curso en PDF
+public/                    Recursos estáticos
+scripts/                   build-course, create-accounts, smoke, package-server
+src/
+  app/                     Rutas: /, /leccion, /indice, /cuenta, /login, /setup, /api
+  components/              UI
+  domain/                  Modelo y reglas
+  lib/                     Formato y utilidades
+  server/                  Servicios Effect
+src-tauri/                 App de escritorio (Rust + configuración)
+</code></pre>
+
+  <h3>Cómo fluye una petición</h3>
+  <ol>
+    <li>La página (servidor) pide el curso a <code>CourseRepository</code>, que lo lee una vez y lo cachea.</li>
+    <li>El progreso se lee de SQLite para la persona de la sesión.</li>
+    <li>El reproductor pide el vídeo a <code>/api/media/&lt;id&gt;</code>, que exige sesión y responde con <code>Range</code>.</li>
+    <li>Cada guardado va a <code>PUT /api/progress</code>, que valida el cuerpo con <code>Schema</code> y hace un upsert.</li>
+  </ol>
+</section>
+
+<!-- ============================ 4 ============================ -->
+<section class="page" id="s4">
+  <span class="section-no">04</span>
+  <h2 class="section">App de escritorio</h2>
+  <div class="section-rule"></div>
+
+  <p>La app de Windows es un envoltorio <strong>Tauri</strong>: una ventana nativa (WebView2) que apunta a un
+  servidor Next empaquetado dentro de la propia aplicación.</p>
+
+  <h3>Qué ocurre al abrirla</h3>
+  <ol>
+    <li>Lee la configuración de <code>%APPDATA%\com.lans.aula\config.json</code>.</li>
+    <li>Si falta o la carpeta de vídeos ya no existe, pide elegirla y la guarda.</li>
+    <li>Elige el puerto (41820 si está libre) y arranca <code>node.exe server.js</code> con el entorno adecuado.</li>
+    <li>Espera a que el puerto responda (máximo 45 s).</li>
+    <li>Abre la ventana ajustada al monitor y apunta a <code>http://127.0.0.1:41820</code>.</li>
+    <li>Al cerrar la ventana, mata el servidor hijo.</li>
+  </ol>
+
+  <h3>Por qué el puerto es fijo</h3>
+  <p>Cookies de sesión y preferencias del webview se guardan <em>por origen</em>. Con un puerto aleatorio en cada
+  arranque, la sesión y el modo oscuro se perderían al cerrar. Por eso se usa 41820 de forma estable; solo cambia
+  si está ocupado, y entonces se guarda el nuevo en la configuración.</p>
+
+  <h3>Dónde vive cada cosa</h3>
+  <table>
+    <tr><th>Qué</th><th>Dónde</th></tr>
+    <tr><td>Ejecutable y recursos</td><td><code>%LOCALAPPDATA%\Aula Lans\</code></td></tr>
+    <tr><td>Base de datos</td><td><code>%APPDATA%\com.lans.aula\aula.db</code></td></tr>
+    <tr><td>Configuración</td><td><code>%APPDATA%\com.lans.aula\config.json</code></td></tr>
+    <tr><td>Log de arranque</td><td><code>%APPDATA%\com.lans.aula\startup.log</code></td></tr>
+    <tr><td>Vídeos</td><td>La carpeta elegida (por defecto, <code>…\Lans Studios\media</code>)</td></tr>
+  </table>
+
+  <div class="note">
+    Los vídeos <strong>no</strong> se copian dentro del instalador. Así el instalador pesa ~30 MB en lugar de
+    5 GB, y se pueden mover o respaldar sin reinstalar. Si se mueven, hay que volver a elegir la carpeta.
+  </div>
+
+  <h3>Instalación</h3>
+  <p>El instalador es NSIS y se instala <strong>por usuario</strong> (no pide administrador). No está firmado, así
+  que SmartScreen puede avisar la primera vez: <em>Más información → Ejecutar de todas formas</em>.</p>
+
+  <h3>Requisitos para compilar</h3>
+  <ul>
+    <li>Rust (<code>rustup</code>) con el target MSVC.</li>
+    <li>Visual Studio Build Tools con el workload de C++.</li>
+    <li>Node.js en el PATH (se copia <code>node.exe</code> al paquete).</li>
+    <li>WebView2 (viene con Windows 10/11).</li>
+  </ul>
+</section>
+
+<!-- ============================ 5 ============================ -->
+<section class="page" id="s5">
+  <span class="section-no">05</span>
+  <h2 class="section">Datos</h2>
+  <div class="section-rule"></div>
+
+  <h3>Base de datos</h3>
+  <p>SQLite en modo WAL. Tres tablas:</p>
+
+  <table>
+    <tr><th>Tabla</th><th>Columnas</th><th>Notas</th></tr>
+    <tr><td><code>users</code></td><td>id, name, username, password_hash, role, created_at</td><td><code>username</code> único sin distinguir mayúsculas</td></tr>
+    <tr><td><code>sessions</code></td><td>id, user_id, created_at, expires_at</td><td><code>id</code> es el SHA-256 del token; caduca a 30 días</td></tr>
+    <tr><td><code>progress</code></td><td>user_id, lesson_id, position_seconds, completed, updated_at</td><td>Clave primaria compuesta; borrado en cascada</td></tr>
+  </table>
+
+  <p class="small">Eliminar una cuenta borra sus sesiones y su progreso por clave foránea en cascada.</p>
+
+  <h3>Modelo de contenido</h3>
+  <p><code>content/course.json</code> se genera con <code>bun run content:build</code> y se valida contra
+  <code>CourseSchema</code>. Cada lección guarda:</p>
+<pre><code>{
+  "id": "manicura/01-brocas-para-manicura",
+  "moduleId": "manicura",
+  "title": "BROCAS PARA MANICURA",
+  "position": 1,
+  "durationSeconds": 118,
+  "bytes": 25906356,
+  "file": "6. MANICURA/01 - BROCAS PARA MANICURA.mp4"
+}</code></pre>
+
+  <h3>Progreso</h3>
+  <p>El upsert nunca retrocede el estado: si una lección estaba vista, sigue vista. La posición se redondea a dos
+  decimales y se guarda con la marca de tiempo del último cambio.</p>
+
+  <h3>Copias de seguridad</h3>
+  <p>Basta con copiar dos cosas:</p>
+  <ul>
+    <li><code>%APPDATA%\com.lans.aula\aula.db</code> — cuentas y progreso.</li>
+    <li>La carpeta <code>media/</code> — los vídeos.</li>
+  </ul>
+  <p class="small">La configuración (<code>config.json</code>) es prescindible: se regenera al elegir carpeta.</p>
+</section>
+
+<!-- ============================ 6 ============================ -->
+<section class="page" id="s6">
+  <span class="section-no">06</span>
+  <h2 class="section">API y contratos</h2>
+  <div class="section-rule"></div>
+
+  <table>
+    <tr><th>Método</th><th>Ruta</th><th>Qué hace</th></tr>
+    <tr><td>GET</td><td><code>/api/course</code></td><td>Curso completo con módulos y lecciones.</td></tr>
+    <tr><td>GET</td><td><code>/api/progress</code></td><td>Progreso de la persona con sesión.</td></tr>
+    <tr><td>PUT</td><td><code>/api/progress</code></td><td>Guarda posición y estado de una lección.</td></tr>
+    <tr><td>GET</td><td><code>/api/media/&lt;id&gt;</code></td><td>Vídeo con soporte de <code>Range</code>.</td></tr>
+  </table>
+
+  <h3>Guardar progreso</h3>
+<pre><code>PUT /api/progress
+Content-Type: application/json
+
+{ "lessonId": "manicura/01-brocas-para-manicura",
+  "positionSeconds": 92.5,
+  "completed": false }</code></pre>
+  <p>Respuesta 200:</p>
+<pre><code>{ "lessonId": "manicura/01-brocas-para-manicura",
+  "positionSeconds": 92.5,
+  "completed": false,
+  "updatedAt": "2026-11-10T06:06:50.615Z" }</code></pre>
+
+  <h3>Códigos de error</h3>
+  <table>
+    <tr><th>Código</th><th>Cuándo</th></tr>
+    <tr><td>400 <code>invalid_request</code></td><td>Cuerpo inválido o ruta de archivo no permitida.</td></tr>
+    <tr><td>401 <code>unauthorized</code></td><td>Sin sesión válida.</td></tr>
+    <tr><td>404 <code>lesson_not_found</code></td><td>La lección no existe.</td></tr>
+    <tr><td>416</td><td>Rango de bytes fuera del archivo.</td></tr>
+    <tr><td>500 <code>course_unavailable</code> / <code>database_unavailable</code></td><td>Fallo de contenido o de SQLite.</td></tr>
+  </table>
+
+  <h3>Streaming</h3>
+  <p>La respuesta de vídeo incluye <code>Accept-Ranges: bytes</code> y responde <code>206</code> con
+  <code>Content-Range</code> cuando se pide un rango. Sin sesión devuelve <code>401</code>; con un rango imposible,
+  <code>416</code>.</p>
+</section>
+
+<!-- ============================ 7 ============================ -->
+<section class="page" id="s7">
+  <span class="section-no">07</span>
+  <h2 class="section">Scripts y comandos</h2>
+  <div class="section-rule"></div>
+
+  <table>
+    <tr><th>Comando</th><th>Qué hace</th></tr>
+    <tr><td><code>bun install</code></td><td>Instala dependencias.</td></tr>
+    <tr><td><code>bun run dev</code></td><td>Servidor de desarrollo en <code>localhost:3000</code>.</td></tr>
+    <tr><td><code>bun run build</code></td><td>Compila Next en modo standalone.</td></tr>
+    <tr><td><code>bun run start</code></td><td>Arranca la versión compilada.</td></tr>
+    <tr><td><code>bun run content:build</code></td><td>Genera <code>course.json</code> y verifica los vídeos.</td></tr>
+    <tr><td><code>bun run typecheck</code></td><td>TypeScript en modo estricto.</td></tr>
+    <tr><td><code>bun run lint</code></td><td>ESLint.</td></tr>
+    <tr><td><code>bun run scripts/create-accounts.ts</code></td><td>Crea las tres cuentas con su rol (idempotente).</td></tr>
+    <tr><td><code>bun run scripts/smoke.ts</code></td><td>Prueba cuentas, sesiones y aislamiento de progreso.</td></tr>
+    <tr><td><code>bun run package:server</code></td><td>Prepara el servidor y <code>node.exe</code> para Tauri.</td></tr>
+    <tr><td><code>bun run desktop:build</code></td><td>Empaqueta servidor + app y genera el instalador.</td></tr>
+  </table>
+
+  <h3>Variables de entorno</h3>
+  <table>
+    <tr><th>Variable</th><th>Por defecto</th><th>Uso</th></tr>
+    <tr><td><code>MEDIA_DIR</code></td><td><code>media</code></td><td>Carpeta raíz de los vídeos.</td></tr>
+    <tr><td><code>CONTENT_FILE</code></td><td><code>content/course.json</code></td><td>Modelo del curso.</td></tr>
+    <tr><td><code>DATABASE_FILE</code></td><td><code>data/aula.db</code></td><td>Base SQLite.</td></tr>
+    <tr><td><code>PORT</code> / <code>HOSTNAME</code></td><td>3000 / 0.0.0.0</td><td>Servidor Next.</td></tr>
+  </table>
+
+  <h3>Prueba de humo</h3>
+<pre><code>DATABASE_FILE=data/verify.db bun run scripts/smoke.ts</code></pre>
+  <p class="small">Usa una base temporal y comprueba registro, duplicados, contraseña incorrecta, sesión,
+  aislamiento del progreso, cambio de contraseña, borrado en cascada y cierre de sesión.</p>
+
+  <h3>Regenerar el instalador</h3>
+<pre><code>bun run desktop:build
+# → src-tauri/target/release/bundle/nsis/Aula Lans_1.0.0_x64-setup.exe</code></pre>
+</section>
+
+<!-- ============================ 8 ============================ -->
+<section class="page" id="s8">
+  <span class="section-no">08</span>
+  <h2 class="section">Verificación</h2>
+  <div class="section-rule"></div>
+
+  <p>Comprobaciones ejecutadas sobre la versión instalada:</p>
+
+  <table>
+    <tr><th>Prueba</th><th>Resultado</th></tr>
+    <tr><td>TypeScript (<code>tsc --noEmit</code>)</td><td>Sin errores</td></tr>
+    <tr><td>ESLint</td><td>Sin errores ni avisos</td></tr>
+    <tr><td><code>next build</code></td><td>Correcto</td></tr>
+    <tr><td>Prueba de humo de datos</td><td>13 de 13</td></tr>
+    <tr><td>Login y sesión</td><td>Correcto (cookie HttpOnly)</td></tr>
+    <tr><td>Progreso por persona</td><td>Aislado entre cuentas</td></tr>
+    <tr><td>Vídeo con <code>Range</code></td><td><code>206</code> con <code>Content-Range</code></td></tr>
+    <tr><td>Vídeo sin sesión</td><td><code>401</code></td></tr>
+    <tr><td>Rango fuera de límite</td><td><code>416</code></td></tr>
+    <tr><td>Lección inexistente</td><td><code>404</code></td></tr>
+    <tr><td>Puerto entre arranques</td><td>41820 → 41820 (estable)</td></tr>
+    <tr><td>Cierre de la app</td><td>Sin procesos huérfanos</td></tr>
+    <tr><td>Consola del servidor</td><td>Oculta (<code>CREATE_NO_WINDOW</code>)</td></tr>
+    <tr><td>Modo oscuro</td><td>Persistente y sin destello</td></tr>
+  </table>
+
+  <div class="note">
+    La app se probó instalada, no solo compilada: instalación silenciosa, arranque, peticiones HTTP al servidor
+    interno, cierre de ventana y comprobación de que el proceso hijo termina.
+  </div>
+</section>
+
+<!-- ============================ 9 ============================ -->
+<section class="page" id="s9">
+  <span class="section-no">09</span>
+  <h2 class="section">Problemas frecuentes</h2>
+  <div class="section-rule"></div>
+
+  <h3>La app no abre o se cierra sola</h3>
+  <p>Mira <code>%APPDATA%\com.lans.aula\startup.log</code>. Los motivos habituales:</p>
+  <ul>
+    <li>La carpeta de vídeos se movió o renombró → borra <code>config.json</code> y vuelve a abrir para elegirla.</li>
+    <li>El puerto 41820 está ocupado por otro programa → la app usa el siguiente libre y lo guarda.</li>
+    <li>Falta <code>node.exe</code> o la carpeta <code>resources</code> → reinstala.</li>
+  </ul>
+
+  <h3>«No se pudo iniciar el aula»</h3>
+  <p>El diálogo indica el motivo y la ruta del log. Si el log está vacío, reinstala el paquete.</p>
+
+  <h3>Los vídeos no cargan</h3>
+  <ul>
+    <li>Comprueba que la carpeta elegida contiene una carpeta por módulo con archivos <code>.mp4</code>.</li>
+    <li>Si moviste los vídeos, borra <code>config.json</code> y vuelve a abrir.</li>
+    <li>Verifica que el archivo existe en la ruta que indica <code>course.json</code>.</li>
+  </ul>
+
+  <h3>SmartScreen bloquea el instalador</h3>
+  <p>Es normal: el instalador no está firmado. <em>Más información → Ejecutar de todas formas</em>.</p>
+
+  <h3>He olvidado la contraseña</h3>
+  <p>Otra persona con rol de administradora puede restablecerla desde <strong>Ajustes → Personas con acceso →
+  Gestionar</strong>. Si nadie puede entrar, se puede borrar el usuario de la base con SQLite y volver a crearlo.</p>
+
+  <h3>Quiero empezar de cero</h3>
+  <p>Cierra la app, borra <code>%APPDATA%\com.lans.aula\aula.db</code> y vuelve a abrir: aparecerá la pantalla de
+  primera cuenta.</p>
+
+  <div class="warn">
+    Borrar <code>aula.db</code> elimina las cuentas y <strong>todo el progreso</strong>. Haz copia antes.
+  </div>
+</section>
+
+<!-- ============================ 10 ============================ -->
+<section class="page" id="s10">
+  <span class="section-no">10</span>
+  <h2 class="section">Mantenimiento</h2>
+  <div class="section-rule"></div>
+
+  <h3>Añadir o reemplazar vídeos</h3>
+  <ol>
+    <li>Coloca el archivo en su carpeta de módulo, con el prefijo <code>NN - </code> que le corresponda.</li>
+    <li>Actualiza <code>content/source-manifest.json</code> si cambia el título o la duración.</li>
+    <li>Ejecuta <code>bun run content:build</code>: valida que cada lección tiene su archivo y regenera el modelo.</li>
+    <li>Recompila la app (<code>bun run desktop:build</code>) para que el paquete lleve el modelo nuevo.</li>
+  </ol>
+
+  <h3>Actualizar la aplicación</h3>
+<pre><code>git pull
+bun install
+bun run content:build
+bun run desktop:build
+# instalar el nuevo Aula Lans_x.y.z_x64-setup.exe</code></pre>
+
+  <h3>Copias de seguridad</h3>
+  <table>
+    <tr><th>Qué</th><th>Cómo</th><th>Frecuencia sugerida</th></tr>
+    <tr><td>Base de datos</td><td>Copiar <code>aula.db</code></td><td>Mensual o tras cambios</td></tr>
+    <tr><td>Vídeos</td><td>Copiar <code>media/</code> a otro disco</td><td>Una vez, o si se reemplazan</td></tr>
+    <tr><td>Código</td><td>Repositorio en GitHub</td><td>Ya versionado</td></tr>
+  </table>
+
+  <h3>Desinstalar</h3>
+  <p>Desde <em>Configuración → Aplicaciones</em> o con <code>%LOCALAPPDATA%\Aula Lans\uninstall.exe</code>.
+  Los datos de <code>%APPDATA%\com.lans.aula</code> y los vídeos <strong>no</strong> se borran; elimínalos a mano si
+  quieres limpiar del todo.</p>
+
+  <h3>Repositorio</h3>
+  <p><code>github.com/mamfonsek1/App-Master-Creator</code> — contiene la aplicación y los metadatos del temario.
+  Los vídeos y los binarios generados quedan fuera por tamaño y por derechos de autor.</p>
+</section>
+
+<!-- ============================ 11 ============================ -->
+<section class="page" id="s11">
+  <span class="section-no">11</span>
+  <h2 class="section">Nota legal</h2>
+  <div class="section-rule"></div>
+
+  <p>Los vídeos y el material del curso son propiedad de <strong>Lans Studios</strong> y están protegidos por
+  derechos de autor. Esta aplicación es un entorno <strong>privado y local</strong> para que las personas que
+  pagaron el curso puedan seguir viéndolo cuando su acceso a la plataforma caduque.</p>
+
+  <ul>
+    <li>Uso personal y doméstico. No redistribuir, publicar ni compartir el contenido.</li>
+    <li>No se aloja en ningún servidor público: los vídeos viven en este equipo.</li>
+    <li>El repositorio de código no contiene vídeos ni binarios de la app.</li>
+  </ul>
+
+  <div class="note">
+    Si en algún momento se comparte el equipo o se abre la app a más personas, conviene revisar las condiciones
+    del curso y cambiar las contraseñas.
+  </div>
+
+  <h3>Resumen final</h3>
+  <table>
+    <tr><th>Elemento</th><th>Estado</th></tr>
+    <tr><td>Curso</td><td>77 lecciones, 10 módulos, 4 h 31 min, 5,0 GB</td></tr>
+    <tr><td>Cuentas</td><td>3 (1 administradora, 2 miembros)</td></tr>
+    <tr><td>Datos</td><td>SQLite local, sin sincronización</td></tr>
+    <tr><td>Distribución</td><td>Instalador NSIS por usuario, ~30 MB</td></tr>
+    <tr><td>Código</td><td>Repositorio en GitHub, sin contenido audiovisual</td></tr>
+  </table>
+
+  <p class="small" style="margin-top:10mm">Documentación generada en noviembre de 2026 · Aula Lans 1.0.0</p>
+</section>
+
+</body>
+</html>
