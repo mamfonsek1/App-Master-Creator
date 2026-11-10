@@ -16,5 +16,5 @@ export const paths = {
   root: process.cwd(),
   media: resolveFromRoot(process.env["MEDIA_DIR"], "media"),
   courseFile: resolveFromRoot(process.env["CONTENT_FILE"], "content/course.json"),
-  progressFile: resolveFromRoot(process.env["PROGRESS_FILE"], "data/progress.json"),
+  databaseFile: resolveFromRoot(process.env["DATABASE_FILE"], "data/aula.db"),
 } as const;

@@ -6,7 +6,9 @@ import { Effect } from "effect";
 
 import { findLesson } from "@/domain/course";
 import { CourseLoadError, CourseRepository } from "@/server/course-repository";
+import { DatabaseError } from "@/server/db";
 import { InvalidRequestError, LessonNotFoundError } from "@/server/errors";
+import { currentUser } from "@/server/guards";
 import { errorResponse, runRoute } from "@/server/http";
 import { contentRange, parseRange, resolveMediaPath } from "@/server/media";
 
@@ -16,21 +18,28 @@ interface RouteContext {
   readonly params: Promise<{ readonly path: ReadonlyArray<string> }>;
 }
 
-type RouteError = CourseLoadError | LessonNotFoundError | InvalidRequestError;
+type RouteError = DatabaseError | CourseLoadError | LessonNotFoundError | InvalidRequestError;
 
 function mapError(error: RouteError): Response {
-  if (error._tag === "LessonNotFoundError") {
-    return errorResponse(404, "lesson_not_found", error.message);
+  switch (error._tag) {
+    case "LessonNotFoundError":
+      return errorResponse(404, "lesson_not_found", error.message);
+    case "InvalidRequestError":
+      return errorResponse(400, "invalid_request", error.message);
+    case "CourseLoadError":
+      return errorResponse(500, "course_unavailable", error.message);
+    case "DatabaseError":
+      return errorResponse(500, "database_unavailable", error.message);
   }
-
-  if (error._tag === "InvalidRequestError") {
-    return errorResponse(400, "invalid_request", error.message);
-  }
-
-  return errorResponse(500, "course_unavailable", error.message);
 }
 
 export async function GET(request: Request, context: RouteContext): Promise<Response> {
+  const user = await currentUser();
+
+  if (!user) {
+    return errorResponse(401, "unauthorized", "Inicia sesión para ver el curso.");
+  }
+
   const { path: segments } = await context.params;
   const lessonId = segments.join("/");
 

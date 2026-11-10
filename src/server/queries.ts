@@ -21,11 +21,11 @@ export async function loadCourse(): Promise<Course> {
   );
 }
 
-export async function loadProgress(): Promise<Progress> {
+export async function loadProgress(userId: string): Promise<Progress> {
   return Effect.runPromise(
     Effect.gen(function* () {
       const store = yield* ProgressStore;
-      return yield* store.read;
+      return yield* store.read(userId);
     }).pipe(Effect.provide(AppLayer)),
   );
 }

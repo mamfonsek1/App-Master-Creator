@@ -190,28 +190,31 @@ export function Player({
 
   return (
     <>
-      <div className="player">
-        <video
-          ref={videoRef}
-          src={`/api/media/${lesson.id}`}
-          controls
-          playsInline
-          preload="metadata"
-          onLoadedMetadata={handleLoadedMetadata}
-          onTimeUpdate={handleTimeUpdate}
-          onPause={() => void persist(videoRef.current?.currentTime ?? position, false)}
-          onEnded={handleEnded}
-        />
-      </div>
-
-      <div className="watch__heading">
-        <div>
-          <div className="watch__breadcrumb">
-            Módulo {String(modulePosition).padStart(2, "0")} · {moduleTitle}
-          </div>
-          <h1 className="watch__title">{lesson.title}</h1>
+      <div className="watch__stage">
+        <div className="player">
+          <video
+            ref={videoRef}
+            src={`/api/media/${lesson.id}`}
+            controls
+            playsInline
+            preload="metadata"
+            onLoadedMetadata={handleLoadedMetadata}
+            onTimeUpdate={handleTimeUpdate}
+            onPause={() => void persist(videoRef.current?.currentTime ?? position, false)}
+            onEnded={handleEnded}
+          />
         </div>
       </div>
+
+      <div className="watch__info">
+        <div className="watch__heading">
+          <div>
+            <div className="watch__breadcrumb">
+              Módulo {String(modulePosition).padStart(2, "0")} · {moduleTitle}
+            </div>
+            <h1 className="watch__title">{lesson.title}</h1>
+          </div>
+        </div>
 
       <div className="watch__actions">
         {previous ? (
@@ -271,6 +274,7 @@ export function Player({
           <span className="label">Atajos</span>
           <span>espacio · ← → · M · N</span>
         </div>
+      </div>
       </div>
     </>
   );

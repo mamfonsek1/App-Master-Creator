@@ -5,12 +5,14 @@ import { ArrowIcon } from "@/components/icons";
 import { SiteHeader } from "@/components/site-header";
 import { summarize } from "@/domain/progress";
 import { formatBytes, formatDuration, formatPercent } from "@/lib/format";
+import { requireUser } from "@/server/guards";
 import { loadCourse, loadProgress } from "@/server/queries";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const [course, progress] = await Promise.all([loadCourse(), loadProgress()]);
+  const user = await requireUser();
+  const [course, progress] = await Promise.all([loadCourse(), loadProgress(user.id)]);
 
   const lessons = course.modules.flatMap((module) => module.lessons);
   const summary = summarize(lessons, progress);
@@ -30,6 +32,7 @@ export default async function HomePage() {
   return (
     <>
       <SiteHeader
+        user={user}
         lessonCount={course.lessonCount}
         durationLabel={formatDuration(course.durationSeconds)}
       />
@@ -94,6 +97,15 @@ export default async function HomePage() {
                   <ArrowIcon />
                 </Link>
               ) : null}
+
+              <a
+                className="hero__index"
+                href="/indice.pdf"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Ver índice del curso (PDF)
+              </a>
             </aside>
           </div>
         </section>

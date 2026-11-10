@@ -9,10 +9,10 @@ build.log
 # Contenido audiovisual: material de pago (~5 GB), no se versiona.
 /media/
 
-# Estado local generado en tiempo de ejecución.
-/data/progress.json
-/data/progress.json.tmp
-/data/*.corrupt-*
+# Base de datos local y estado de ejecución.
+/data/*.db
+/data/*.db-wal
+/data/*.db-shm
 
 .env
 .env.local

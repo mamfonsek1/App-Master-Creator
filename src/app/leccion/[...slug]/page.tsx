@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { WatchExperience } from "@/components/watch/watch-experience";
 import { buildCourseIndex, findLesson, neighboursOf } from "@/domain/course";
 import { formatDuration } from "@/lib/format";
+import { requireUser } from "@/server/guards";
 import { loadCourse, loadProgress } from "@/server/queries";
 
 export const dynamic = "force-dynamic";
@@ -38,7 +39,8 @@ export default async function LessonPage({ params }: LessonPageProps) {
   const { slug } = await params;
   const lessonId = slug.join("/");
 
-  const [course, progress] = await Promise.all([loadCourse(), loadProgress()]);
+  const user = await requireUser();
+  const [course, progress] = await Promise.all([loadCourse(), loadProgress(user.id)]);
   const index = buildCourseIndex(course);
   const location = findLesson(index, lessonId);
 
@@ -51,6 +53,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
   return (
     <>
       <SiteHeader
+        user={user}
         lessonCount={course.lessonCount}
         durationLabel={formatDuration(course.durationSeconds)}
       />
@@ -64,13 +67,6 @@ export default async function LessonPage({ params }: LessonPageProps) {
         previous={neighbours.previous}
         next={neighbours.next}
       />
-
-      <footer className="shell footer">
-        <span>Lans Studios · Aula local</span>
-        <span>
-          Módulo {String(location.module.position).padStart(2, "0")} · {location.module.title}
-        </span>
-      </footer>
     </>
   );
 }
