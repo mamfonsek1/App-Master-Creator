@@ -93,7 +93,7 @@
   </div>
 
   <div class="meta">
-    <span>Versión 1.0.0</span>
+    <span>Versión 1.0.1</span>
     <span>Noviembre 2026</span>
     <span>Uso personal</span>
   </div>
@@ -189,6 +189,12 @@
   <div class="note">
     La contraseña temporal inicial es la misma para las tres. Cámbiala en <strong>Ajustes → Cambiar
     contraseña</strong>. Las contraseñas se guardan cifradas con scrypt: nadie puede leerlas, solo restablecerlas.
+  </div>
+
+  <div class="note">
+    El instalador ya incluye una base de datos inicial con estas tres cuentas, así que la primera vez
+    se abre directamente el <strong>login</strong>. La pantalla de «Crear cuenta» solo aparecería si la
+    base se hubiera borrado por completo.
   </div>
 
   <h3>Primer arranque de la app de escritorio</h3>
@@ -288,6 +294,7 @@ src-tauri/                 App de escritorio (Rust + configuración)
 
   <h3>Qué ocurre al abrirla</h3>
   <ol>
+    <li>Si no existe <code>aula.db</code>, copia la base inicial de <code>seed/</code> con las tres cuentas.</li>
     <li>Lee la configuración de <code>%APPDATA%\com.lans.aula\config.json</code>.</li>
     <li>Si falta o la carpeta de vídeos ya no existe, pide elegirla y la guarda.</li>
     <li>Elige el puerto (41820 si está libre) y arranca <code>node.exe server.js</code> con el entorno adecuado.</li>
@@ -480,6 +487,7 @@ Content-Type: application/json
     <tr><td>Cierre de la app</td><td>Sin procesos huérfanos</td></tr>
     <tr><td>Consola del servidor</td><td>Oculta (<code>CREATE_NO_WINDOW</code>)</td></tr>
     <tr><td>Modo oscuro</td><td>Persistente y sin destello</td></tr>
+    <tr><td>Base inicial (seed)</td><td>Base borrada → instalada 1.0.1 → login con las 3 cuentas</td></tr>
   </table>
 
   <div class="note">
@@ -518,6 +526,15 @@ Content-Type: application/json
   <h3>He olvidado la contraseña</h3>
   <p>Otra persona con rol de administradora puede restablecerla desde <strong>Ajustes → Personas con acceso →
   Gestionar</strong>. Si nadie puede entrar, se puede borrar el usuario de la base con SQLite y volver a crearlo.</p>
+
+  <h3>El vídeo se entrecorta (Linux)</h3>
+  <p>El servidor entrega a más de 200 MB/s, así que no es el reproductor de la app: es la
+  decodificación de WebKitGTK, que usa GStreamer. Instala códecs y aceleración:</p>
+<pre><code>sudo apt install gstreamer1.0-libav gstreamer1.0-plugins-good \
+  gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-vaapi
+# Intel: intel-media-va-driver · AMD/Intel antiguo: mesa-va-drivers</code></pre>
+  <p>Comprueba con <code>vainfo</code> que aparecen perfiles H.264. Como alternativa, abrir el
+  archivo con VLC o Celluloid usa aceleración por hardware y va siempre fluido.</p>
 
   <h3>Quiero empezar de cero</h3>
   <p>Cierra la app, borra <code>%APPDATA%\com.lans.aula\aula.db</code> y vuelve a abrir: aparecerá la pantalla de
@@ -598,7 +615,7 @@ bun run desktop:build
     <tr><td>Código</td><td>Repositorio en GitHub, sin contenido audiovisual</td></tr>
   </table>
 
-  <p class="small" style="margin-top:10mm">Documentación generada en noviembre de 2026 · Aula Lans 1.0.0</p>
+  <p class="small" style="margin-top:10mm">Documentación generada en noviembre de 2026 · Aula Lans 1.0.1</p>
 </section>
 
 <!-- ============================ ANEXO ============================ -->
