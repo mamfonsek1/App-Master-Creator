@@ -44,9 +44,7 @@ jobs:
       - name: Instalar dependencias
         run: bun install
 
-      - name: Generar contenido
-        run: bun run content:build
-
+      # `content/course.json` está versionado: el build no necesita los vídeos.
       - name: Empaquetar servidor
         run: bun run package:server
 
