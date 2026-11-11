@@ -177,7 +177,8 @@ fn spawn_server(
     };
 
     let server_dir = resources.join("server");
-    let node = resources.join("node.exe");
+    let node_name = if cfg!(windows) { "node.exe" } else { "node" };
+    let node = resources.join(node_name);
     let data_dir = app.path().app_data_dir()?;
 
     std::fs::create_dir_all(&data_dir)?;

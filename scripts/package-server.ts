@@ -10,7 +10,7 @@
  */
 import { spawnSync } from "node:child_process";
 import { existsSync } from "node:fs";
-import { copyFile, cp, mkdir, rm, stat } from "node:fs/promises";
+import { chmod, copyFile, cp, mkdir, rm, stat } from "node:fs/promises";
 import path from "node:path";
 
 const ROOT = process.cwd();
@@ -70,7 +70,8 @@ function findNode(): string {
     return configured;
   }
 
-  const located = spawnSync("where", ["node"], { encoding: "utf8" });
+  const locator = process.platform === "win32" ? "where" : "which";
+  const located = spawnSync(locator, ["node"], { encoding: "utf8" });
   const candidate = located.stdout
     ?.split(/\r?\n/)
     .map((line) => line.trim())
@@ -85,11 +86,15 @@ function findNode(): string {
 
 async function copyNode(): Promise<void> {
   const node = findNode();
-  const destination = path.join(RESOURCES, "node.exe");
+  const destination = path.join(RESOURCES, process.platform === "win32" ? "node.exe" : "node");
 
   log(`copiando runtime: ${node}`);
   await mkdir(RESOURCES, { recursive: true });
   await copyFile(node, destination);
+
+  if (process.platform !== "win32") {
+    await chmod(destination, 0o755);
+  }
 }
 
 async function main(): Promise<void> {

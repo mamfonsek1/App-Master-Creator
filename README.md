@@ -130,6 +130,64 @@ Todas son opcionales; por defecto se resuelven desde la raíz del proyecto.
 | `CONTENT_FILE`  | `content/course.json` |
 | `DATABASE_FILE` | `data/aula.db`        |
 
+## Compatibilidad
+
+| Sistema | ¿Funciona? | Cómo |
+| ------- | ---------- | ---- |
+| Windows 10/11 x64 | Sí | Instalador NSIS (`Aula Lans - Instalador.exe`) |
+| Linux (Mint, Ubuntu, Debian) | Sí, con build propio | AppImage o `.deb` compilados en Linux |
+| macOS | No, sin build en Mac | Requiere compilar y firmar en macOS |
+| Windows ARM | No | El binario es x64 |
+| Android / iOS | No | Sería otra app |
+
+El instalador `.exe` **no** sirve en Linux: es un binario de Windows. La aplicación en sí es
+multiplataforma (Next.js + Node + SQLite), así que solo hay que compilarla para cada sistema.
+
+### Instalar en Linux Mint / Ubuntu
+
+**Opción A — descargar el paquete ya compilado.** En GitHub, pestaña *Actions → Desktop → Run
+workflow*. Al terminar, descarga el artefacto `aula-lans-linux` y tendrás:
+
+```bash
+chmod +x "Aula Lans_1.0.0_amd64.AppImage"
+./"Aula Lans_1.0.0_amd64.AppImage"
+```
+
+Si el sistema no tiene FUSE: `./"Aula Lans_1.0.0_amd64.AppImage" --appimage-extract-and-run`.
+También se genera un `.deb` que se instala con `sudo apt install ./aula-lans_1.0.0_amd64.deb`.
+
+**Opción B — compilar en el propio equipo.**
+
+```bash
+sudo apt update
+sudo apt install -y libwebkit2gtk-4.1-dev libgtk-3-dev libayatana-appindicator3-dev \
+  librsvg2-dev patchelf build-essential curl
+
+curl -fsSL https://bun.sh/install | bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+git clone https://github.com/mamfonsek1/App-Master-Creator.git
+cd App-Master-Creator
+bun install
+bun run content:build
+bun run desktop:build
+```
+
+El paquete queda en `src-tauri/target/release/bundle/`.
+
+**Los vídeos no viajan con la app.** Copia la carpeta `media/` al equipo Linux (unos 5 GB) y
+selecciónala en el primer arranque. Los datos se guardan en `~/.local/share/com.lans.aula`.
+
+### Alternativa sin instalar nada
+
+La app es web: en cualquier sistema con Node o Bun se puede ejecutar el servidor y abrirla en el
+navegador.
+
+```bash
+bun install && bun run content:build && bun run build && bun run start
+# http://localhost:3000
+```
+
 ## Comprobaciones
 
 ```bash
