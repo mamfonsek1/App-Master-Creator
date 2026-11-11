@@ -188,6 +188,29 @@ bun install && bun run content:build && bun run build && bun run start
 # http://localhost:3000
 ```
 
+### Distribución portable (app + vídeos juntos)
+
+Si prefieres entregar todo en una carpeta en vez de instalar, la app detecta sola una carpeta
+`media` colocada junto al ejecutable:
+
+```
+Aula Lans Portable\
+├─ Aula Lans.exe
+├─ resources\
+└─ media\            ← los 77 vídeos
+```
+
+Se genera con:
+
+```powershell
+bun run desktop:build
+powershell -ExecutionPolicy Bypass -File scripts\make-portable.ps1          # enlaza los vídeos
+powershell -ExecutionPolicy Bypass -File scripts\make-portable.ps1 -Copiar  # los copia (5 GB)
+```
+
+Sin `-Copiar` los vídeos se enlazan (junction) y no ocupan el doble; con `-Copiar` la carpeta se
+puede llevar a otro equipo o a un USB. Al abrirla no pregunta nada: usa el `media` de al lado.
+
 ## Comprobaciones
 
 ```bash

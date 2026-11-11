@@ -128,6 +128,31 @@ fn save_config(app: &tauri::AppHandle, config: &Config) -> Option<()> {
     std::fs::write(path, payload).ok()
 }
 
+/// Carpeta `media` junto al ejecutable: distribución portable sin instalador.
+fn portable_media_dir() -> Option<PathBuf> {
+    let base = match std::env::var("APPIMAGE") {
+        // En un AppImage, `current_exe` apunta al montaje temporal.
+        Ok(appimage) => PathBuf::from(appimage).parent()?.to_path_buf(),
+        Err(_) => std::env::current_exe().ok()?.parent()?.to_path_buf(),
+    };
+
+    let candidates = [
+        base.join("media"),
+        base.join("..").join("media"),
+        base.join("..").join("..").join("media"),
+    ];
+
+    for candidate in candidates {
+        if let Ok(normalized) = candidate.canonicalize() {
+            if normalized.is_dir() && has_videos(&normalized) {
+                return Some(normalized);
+            }
+        }
+    }
+
+    None
+}
+
 /// Configuración vigente. La primera vez pide la carpeta de vídeos.
 fn resolve_config(app: &tauri::AppHandle) -> Option<Config> {
     if let Some(config) = load_config(app) {
@@ -136,6 +161,17 @@ fn resolve_config(app: &tauri::AppHandle) -> Option<Config> {
         if media_dir.is_dir() && has_videos(&media_dir) {
             return Some(config);
         }
+    }
+
+    // Distribución portable: la carpeta media viaja junto a la app.
+    if let Some(media_dir) = portable_media_dir() {
+        let config = Config {
+            media_dir: media_dir.to_string_lossy().to_string(),
+            port: DEFAULT_PORT,
+        };
+
+        save_config(app, &config);
+        return Some(config);
     }
 
     for _ in 0..3 {
