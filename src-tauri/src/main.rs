@@ -128,6 +128,21 @@ fn save_config(app: &tauri::AppHandle, config: &Config) -> Option<()> {
     std::fs::write(path, payload).ok()
 }
 
+/// `canonicalize` devuelve en Windows la forma `\\?\C:\...`, que Node no
+/// interpreta igual al resolver rutas. Se quita el prefijo.
+fn without_extended_prefix(path: PathBuf) -> PathBuf {
+    #[cfg(windows)]
+    {
+        let text = path.to_string_lossy();
+
+        if let Some(rest) = text.strip_prefix(r"\\?\") {
+            return PathBuf::from(rest);
+        }
+    }
+
+    path
+}
+
 /// Carpeta `media` junto al ejecutable: distribución portable sin instalador.
 fn portable_media_dir() -> Option<PathBuf> {
     let base = match std::env::var("APPIMAGE") {
@@ -145,7 +160,7 @@ fn portable_media_dir() -> Option<PathBuf> {
     for candidate in candidates {
         if let Ok(normalized) = candidate.canonicalize() {
             if normalized.is_dir() && has_videos(&normalized) {
-                return Some(normalized);
+                return Some(without_extended_prefix(normalized));
             }
         }
     }

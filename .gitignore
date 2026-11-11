@@ -29,3 +29,7 @@ Thumbs.db
 # Instalador generado (se regenera con bun run desktop:build).
 /Aula Lans - Instalador.exe
 
+
+# Distribucion portable generada (incluye enlace a los videos).
+/dist/
+
