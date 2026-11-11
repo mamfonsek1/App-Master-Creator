@@ -279,7 +279,30 @@ fn log_startup_error(app: &tauri::AppHandle, message: &str) {
     let _ = std::fs::write(data_dir.join("startup.log"), format!("{message}\n"));
 }
 
+/// Primera ejecución: si no hay base de datos, se copia la de `seed/`, que ya
+/// trae las tres cuentas. Así nunca aparece la pantalla de «crear cuenta».
+fn seed_database(app: &tauri::AppHandle) -> Result<(), Box<dyn std::error::Error>> {
+    let data_dir = app.path().app_data_dir()?;
+    std::fs::create_dir_all(&data_dir)?;
+
+    let database = data_dir.join("aula.db");
+
+    if database.exists() {
+        return Ok(());
+    }
+
+    let seed = app.path().resource_dir()?.join("seed").join("aula.db");
+
+    if seed.is_file() {
+        std::fs::copy(&seed, &database)?;
+    }
+
+    Ok(())
+}
+
 fn start(app: &tauri::AppHandle) -> Result<(), Box<dyn std::error::Error>> {
+    seed_database(app)?;
+
     let mut config =
         resolve_config(app).ok_or("No se seleccionó la carpeta de vídeos del curso.")?;
 

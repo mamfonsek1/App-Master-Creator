@@ -1,6 +1,6 @@
-{
+﻿{
   "name": "app-master-creator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "type": "module",
   "description": "Entorno local de curso y reproducción para Refuerzo Master Creador Lans",

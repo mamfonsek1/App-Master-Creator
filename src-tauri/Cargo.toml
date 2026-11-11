@@ -1,6 +1,6 @@
-[package]
+﻿[package]
 name = "aula-lans"
-version = "1.0.0"
+version = "1.0.1"
 description = "Aula local del curso Refuerzo Master Creador Lans"
 authors = ["Lans Studios"]
 edition = "2021"
